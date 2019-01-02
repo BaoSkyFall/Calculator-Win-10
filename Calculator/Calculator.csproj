@@ -91,6 +91,12 @@
       <DependentUpon>Length.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Programmer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Programmer.Designer.cs">
+      <DependentUpon>Programmer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scientific.cs">
       <SubType>UserControl</SubType>
@@ -136,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Length.resx">
       <DependentUpon>Length.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programmer.resx">
+      <DependentUpon>Programmer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

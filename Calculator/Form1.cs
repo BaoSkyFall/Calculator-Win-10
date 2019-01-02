@@ -24,8 +24,7 @@ namespace Calculator
             btn_menu.BackColor = SystemColors.ButtonFace;
 
             standard.BringToFront();
-            history1.Visible = true;
-            history1.BringToFront();
+    
       
         }
 
@@ -51,10 +50,10 @@ namespace Calculator
                 lbl_title.Text = "Standard";
                 this.BackColor = SystemColors.ButtonFace;
                 btn_menu.BackColor = SystemColors.ButtonFace;
-
-                standard.BringToFront();
                 history1.Visible = true;
                 history1.BringToFront();
+                standard.BringToFront();
+             
                 treeView1.Visible = false;
             }
             else if (e.Node.Name == "node_scientific")
@@ -62,10 +61,11 @@ namespace Calculator
                 lbl_title.Text = "Scientific";
                 this.BackColor = SystemColors.ButtonFace;
                 btn_menu.BackColor = SystemColors.ButtonFace;
-                scientific1.BringToFront();
-
                 history1.Visible = true;
                 history1.BringToFront();
+                scientific1.BringToFront();
+
+         
                 treeView1.Visible = false;
 
             }
@@ -74,7 +74,9 @@ namespace Calculator
                 lbl_title.Text = "Programmer";
                 this.BackColor = SystemColors.ButtonFace;
                 btn_menu.BackColor = SystemColors.ButtonFace;
-
+                history1.Visible = true;
+                history1.BringToFront();
+                programmer1.BringToFront();
                 treeView1.Visible = false;
 
             }
@@ -83,8 +85,9 @@ namespace Calculator
                 lbl_title.Text = "Datecalculation";
                 this.BackColor = SystemColors.ButtonFace;
                 btn_menu.BackColor = SystemColors.ButtonFace;
-        
                 history1.Visible = false;
+
+
                 dateCalculation1.BringToFront();
                 treeView1.Visible = false;
 
@@ -96,6 +99,7 @@ namespace Calculator
                 lbl_title.Text = "Currency";
                 history1.Visible = false;
 
+
                 currency1.Visible = true;
                 currency1.BringToFront();
                 treeView1.Visible = false;
@@ -103,11 +107,12 @@ namespace Calculator
             }
             else if (e.Node.Name == "node_volume")
             {
+                history1.Visible = false;
 
                 this.BackColor = SystemColors.ActiveBorder;
                 btn_menu.BackColor = SystemColors.ActiveBorder;
                 lbl_title.Text = "Volume";
-                history1.Visible = false;
+         
 
                 volume1.Visible = true;
                 volume1.BringToFront();
@@ -117,11 +122,13 @@ namespace Calculator
             }
             else if (e.Node.Name == "node_length")
             {
+                history1.Visible = false;
+
                 this.BackColor = SystemColors.ActiveBorder;
                 btn_menu.BackColor = SystemColors.ActiveBorder;
                 lbl_title.Text = "Length";
                 length1.Visible = true;
-                history1.Visible = false;
+          
 
                 length1.BringToFront();
                 treeView1.Visible = false;
@@ -132,6 +139,7 @@ namespace Calculator
                 this.BackColor = SystemColors.ActiveBorder;
                 btn_menu.BackColor = SystemColors.ActiveBorder;
                 lbl_title.Text = "Weight And Mass";
+
                 history1.Visible = false;
 
                 weightAndMass1.Visible = true;

@@ -130,17 +130,21 @@ namespace Calculator
                 }
                 if (txt_text1.Text != "")
                 {
-                    decimal d = Decimal.Parse(txt_text1.Text);
-                    if (d == 0)
+                    if(txt_text1.Text.Length <30)
                     {
-                        d = 0;
-                        txt_text1.Text = "0";
+                        decimal d = Decimal.Parse(txt_text1.Text);
+                        if (d == 0)
+                        {
+                            d = 0;
+                            txt_text1.Text = "0";
+                        }
+                        txt_text2.Text = Math.Round((d * exchange), 2).ToString();
+                        if (txt_text2.Text.Length > 16)
+                        {
+                            txt_text2.Text = txt_text2.Text.Substring(0, 16);
+                        }
                     }
-                    txt_text2.Text = Math.Round((d * exchange),2).ToString();
-                    if (txt_text2.Text.Length > 16)
-                    {
-                        txt_text2.Text = txt_text2.Text.Substring(0, 16);
-                    }
+                   
                 }
                 else if (txt_text1.Text == "0")
                 {
@@ -270,7 +274,9 @@ namespace Calculator
                 }
                 if (txt_text2.Text != "")
                 {
-                    decimal d = Decimal.Parse(txt_text2.Text);
+                    if (txt_text1.Text.Length < 30)
+                    { 
+                        decimal d = Decimal.Parse(txt_text2.Text);
                     if (d == 0)
                     {
                         d = 0;
@@ -280,6 +286,7 @@ namespace Calculator
                     if(txt_text1.Text.Length >16)
                     {
                         txt_text1.Text = txt_text1.Text.Substring(0, 16);
+                    }
                     }
                 }
                 else if(txt_text2.Text == "0")

@@ -59,6 +59,7 @@
             this.volume1 = new Calculator.Volume();
             this.length1 = new Calculator.Length();
             this.weightAndMass1 = new Calculator.WeightAndMass();
+            this.programmer1 = new Calculator.Programmer();
             this.SuspendLayout();
             // 
             // currency1
@@ -218,11 +219,19 @@
             this.weightAndMass1.Size = new System.Drawing.Size(781, 577);
             this.weightAndMass1.TabIndex = 52;
             // 
+            // programmer1
+            // 
+            this.programmer1.Location = new System.Drawing.Point(-4, 74);
+            this.programmer1.Name = "programmer1";
+            this.programmer1.Size = new System.Drawing.Size(781, 577);
+            this.programmer1.TabIndex = 53;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 651);
+            this.Controls.Add(this.programmer1);
             this.Controls.Add(this.weightAndMass1);
             this.Controls.Add(this.length1);
             this.Controls.Add(this.volume1);
@@ -257,5 +266,6 @@
         private Volume volume1;
         private Length length1;
         private WeightAndMass weightAndMass1;
+        private Programmer programmer1;
     }
 }

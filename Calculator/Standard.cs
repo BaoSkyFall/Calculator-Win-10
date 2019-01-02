@@ -55,6 +55,52 @@ namespace Calculator
                 enter_value = true;
 
             }
+            else
+            {
+              
+
+                if (operation == "+")
+                {
+
+                    result = result + Double.Parse(txt_display.Text);
+                    Button b = (Button)sender;
+                    operation = b.Text;
+                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+          
+
+                    txt_display.Text = "";
+              
+                }
+                else if (operation == "-")
+                {
+                    result = result - Double.Parse(txt_display.Text);
+                    Button b = (Button)sender;
+                    operation = b.Text;
+                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                    txt_display.Text = "";
+
+                }
+                else if (operation == "*")
+                {
+                    result = result * Double.Parse(txt_display.Text);
+                    Button b = (Button)sender;
+                    operation = b.Text;
+                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                    txt_display.Text = "";
+
+                }
+                else if (operation == "/")
+                {
+                    result = result / Double.Parse(txt_display.Text);
+                    Button b = (Button)sender;
+                    operation = b.Text;
+                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                    txt_display.Text = "";
+                }
+              
+                //result = Double.Parse(txt_display.Text);
+               
+            }
         }
 
         private void btn_equal_click(object sender, EventArgs e)
@@ -66,43 +112,60 @@ namespace Calculator
                 txt_showops.Text = "";
 
             }
-            else if (enter_value)
+            else if(enter_value) 
             {
                 if (operation == "+")
                 {
-                    result = result + Double.Parse(txt_display.Text);
-                    txt_showops.Text = "";
-                    txt_display.Text = result.ToString();
-                    enter_operation = true;
-                    enter_value = false;
+                   
+                        result = result + Double.Parse(txt_display.Text);
+                        txt_history.Text = txt_showops.Text + txt_display.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString(); 
+                        txt_showops.Text = "";
+                        txt_display.Text = result.ToString();
+                        enter_operation = true;
+                        enter_value = false;
+       
+               
+
                 }
                 else if (operation == "-")
                 {
                     result = result - Double.Parse(txt_display.Text);
+                    txt_history.Text = txt_showops.Text + txt_display.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString(); ;
+
                     txt_showops.Text = "";
                     txt_display.Text = result.ToString();
                     enter_operation = true;
                     enter_value = false;
+
 
                 }
                 else if (operation == "*")
                 {
                     result = result * Double.Parse(txt_display.Text);
+                    txt_history.Text = txt_showops.Text + txt_display.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
                     txt_showops.Text = "";
                     txt_display.Text = result.ToString();
                     enter_value = false;
                     enter_operation = true;
+                   
 
                 }
                 else if (operation == "/")
                 {
                     result = result / Double.Parse(txt_display.Text);
+                    txt_history.Text = txt_showops.Text + txt_display.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
                     txt_showops.Text = "";
                     txt_display.Text = result.ToString();
                     enter_operation = true;
                     enter_value = false;
                 }
+                    result = new double();
+
+
             }
+
 
         }
 
@@ -122,6 +185,82 @@ namespace Calculator
             {
                 txt_display.Text = "";
             }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+         
+                if (txt_display.Text != "0" && txt_display.Text != "")
+                {
+                    txt_display.Text = txt_display.Text.Remove(txt_display.Text.Length - 1);
+                }
+            
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            txt_display.Text = "0";
+            txt_showops.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txt_display.Text = "0";
+            txt_showops.Text = "";
+        }
+
+        private void convert_click(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            operation = b.Text;
+            if (operation == "1∕x")
+            {
+                result = 1 / (Double.Parse(txt_display.Text));
+
+
+                txt_showops.Text = "1/" + txt_display.Text;
+                txt_display.Text = result.ToString();
+                enter_operation = true;
+                enter_value = false;
+            }
+            else if (operation == "x²")
+            {
+                result = Math.Pow(Double.Parse(txt_display.Text),2);
+               
+
+                txt_showops.Text = txt_display.Text+"²";
+                txt_display.Text = result.ToString();
+                enter_operation = true;
+                enter_value = false;
+            }
+            else if (operation == "✓")
+            {
+                result = Math.Sqrt(Double.Parse(txt_display.Text));
+               
+
+                txt_showops.Text = "✓"+ txt_display.Text;
+                txt_display.Text = result.ToString();
+                enter_operation = true;
+                enter_value = false;
+            }
+            else if (operation == "%")
+            {
+                //result = result / Double.Parse(txt_display.Text);
+                //txt_showops.Text = "";
+                txt_display.Text = "0";
+                enter_operation = true;
+                enter_value = false;
+
+            }
+            else if(operation == "±")
+            {
+             
+                    result = -Double.Parse(txt_display.Text);
+                    txt_display.Text = result.ToString();
+
+                
+            }
+            result = new double();
         }
     }
 }

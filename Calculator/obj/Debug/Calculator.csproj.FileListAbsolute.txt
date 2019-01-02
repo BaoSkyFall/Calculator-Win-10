@@ -98,3 +98,4 @@ C:\Users\Admin\Desktop\test\Calculator-Win-10-master\Calculator\obj\Debug\Calcul
 C:\Users\Admin\Desktop\test\Calculator-Win-10-master\Calculator\obj\Debug\Calculator.DateCalculation_DifferentBetween.resources
 C:\Users\Admin\Desktop\test\Calculator-Win-10-master\Calculator\obj\Debug\Calculator.DateCalculation_AddorSubtract.resources
 C:\Users\Admin\Desktop\test\Calculator-Win-10-master\Calculator\obj\Debug\Calculator.Form1.resources
+C:\Users\Admin\Desktop\test\Calculator-Win-10-master\Calculator\obj\Debug\Calculator.Programmer.resources
