@@ -68,14 +68,14 @@
             this.button29 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_hex = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_dec = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_oct = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbl_bin = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txt_history
@@ -594,15 +594,15 @@
             this.button31.Text = "And";
             this.button31.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // lbl_hex
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 128);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 25);
-            this.label1.TabIndex = 242;
-            this.label1.Text = "HEX";
+            this.lbl_hex.BackColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_hex.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_hex.Location = new System.Drawing.Point(9, 125);
+            this.lbl_hex.Name = "lbl_hex";
+            this.lbl_hex.Size = new System.Drawing.Size(59, 30);
+            this.lbl_hex.TabIndex = 242;
+            this.lbl_hex.Text = "HEX";
             // 
             // textBox1
             // 
@@ -622,15 +622,14 @@
             this.textBox2.Size = new System.Drawing.Size(324, 30);
             this.textBox2.TabIndex = 245;
             // 
-            // label2
+            // lbl_dec
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 164);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 25);
-            this.label2.TabIndex = 244;
-            this.label2.Text = "DEC";
+            this.lbl_dec.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_dec.Location = new System.Drawing.Point(9, 164);
+            this.lbl_dec.Name = "lbl_dec";
+            this.lbl_dec.Size = new System.Drawing.Size(59, 30);
+            this.lbl_dec.TabIndex = 244;
+            this.lbl_dec.Text = "DEC";
             // 
             // textBox3
             // 
@@ -641,15 +640,14 @@
             this.textBox3.Size = new System.Drawing.Size(324, 30);
             this.textBox3.TabIndex = 247;
             // 
-            // label3
+            // lbl_oct
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 200);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 25);
-            this.label3.TabIndex = 246;
-            this.label3.Text = "OCT";
+            this.lbl_oct.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_oct.Location = new System.Drawing.Point(9, 200);
+            this.lbl_oct.Name = "lbl_oct";
+            this.lbl_oct.Size = new System.Drawing.Size(59, 30);
+            this.lbl_oct.TabIndex = 246;
+            this.lbl_oct.Text = "OCT";
             // 
             // textBox4
             // 
@@ -660,28 +658,27 @@
             this.textBox4.Size = new System.Drawing.Size(324, 30);
             this.textBox4.TabIndex = 249;
             // 
-            // label4
+            // lbl_bin
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 236);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 25);
-            this.label4.TabIndex = 248;
-            this.label4.Text = "BIN";
+            this.lbl_bin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_bin.Location = new System.Drawing.Point(9, 233);
+            this.lbl_bin.Name = "lbl_bin";
+            this.lbl_bin.Size = new System.Drawing.Size(59, 30);
+            this.lbl_bin.TabIndex = 248;
+            this.lbl_bin.Text = "BIN";
             // 
             // Programmer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lbl_bin);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lbl_oct);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbl_dec);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbl_hex);
             this.Controls.Add(this.button26);
             this.Controls.Add(this.button27);
             this.Controls.Add(this.button28);
@@ -771,13 +768,13 @@
         private System.Windows.Forms.Button button29;
         private System.Windows.Forms.Button button30;
         private System.Windows.Forms.Button button31;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_hex;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_dec;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_oct;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbl_bin;
     }
 }

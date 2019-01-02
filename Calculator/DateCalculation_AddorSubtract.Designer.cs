@@ -141,6 +141,7 @@
             // 
             // cbb_year
             // 
+            this.cbb_year.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_year.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbb_year.FormattingEnabled = true;
             this.cbb_year.Items.AddRange(new object[] {
@@ -1154,6 +1155,7 @@
             // 
             // cbb_month
             // 
+            this.cbb_month.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_month.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbb_month.FormattingEnabled = true;
             this.cbb_month.Items.AddRange(new object[] {
@@ -2167,6 +2169,7 @@
             // 
             // cbb_day
             // 
+            this.cbb_day.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_day.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbb_day.FormattingEnabled = true;
             this.cbb_day.Items.AddRange(new object[] {
@@ -3195,7 +3198,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "DateCalculation_AddorSubtract";
-            this.Size = new System.Drawing.Size(341, 392);
+            this.Size = new System.Drawing.Size(555, 392);
             this.ResumeLayout(false);
             this.PerformLayout();
 

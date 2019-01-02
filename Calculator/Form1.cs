@@ -82,7 +82,7 @@ namespace Calculator
             }
             else if (e.Node.Name == "node_datecalculation")
             {
-                lbl_title.Text = "Datecalculation";
+                lbl_title.Text = "Date Calculation";
                 this.BackColor = SystemColors.ButtonFace;
                 btn_menu.BackColor = SystemColors.ButtonFace;
                 history1.Visible = false;

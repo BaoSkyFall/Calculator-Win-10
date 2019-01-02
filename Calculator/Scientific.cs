@@ -14,6 +14,8 @@ namespace Calculator
     {
         public string operation = "";
         public string converation = "";
+        public bool degree = true;
+        public bool hyp = false;
 
         public double result;
         bool enter_value = true;
@@ -38,96 +40,120 @@ namespace Calculator
             }
             else
             {
-                txt_display.Text = txt_display.Text + b.Text;
+                if (txt_display.Text != "∞" && txt_display.Text != "NaN")
+                {
+
+                    txt_display.Text = txt_display.Text + b.Text;
+                }
+                else
+                {
+                    txt_showops.Text = "";
+                    txt_display.Text = b.Text;
+                }
             }
 
         }
 
         private void operation_click(object sender, EventArgs e)
         {
-            if (enter_operation)
+            if (txt_display.Text != "∞" && txt_display.Text != "NaN")
             {
-                Button b = (Button)sender;
-                operation = b.Text;
-                if(b.Text == "x^y")
+                if (enter_operation)
                 {
-                    result = Double.Parse(txt_display.Text);
-                    txt_showops.Text = txt_display.Text + "^";
-                    txt_display.Text = "";
-                    enter_operation = false;
-                    enter_value = true;
+                    Button b = (Button)sender;
+                    operation = b.Text;
+                    if (b.Text == "x^y")
+                    {
+                        result = Double.Parse(txt_display.Text);
+                        txt_showops.Text = txt_display.Text + "^";
+                        txt_display.Text = "";
+                        enter_operation = false;
+                        enter_value = true;
+                    }
+                    else
+                    {
+                        result = Double.Parse(txt_display.Text);
+                        txt_showops.Text = txt_display.Text + b.Text;
+                        txt_display.Text = "";
+                        enter_operation = false;
+                        enter_value = true;
+                    }
+
+
                 }
                 else
                 {
-                    result = Double.Parse(txt_display.Text);
-                    txt_showops.Text = txt_display.Text + b.Text;
-                    txt_display.Text = "";
-                    enter_operation = false;
-                    enter_value = true;
+
+                    if (!enter_value)
+                    {
+
+
+                        if (operation == "+")
+                        {
+
+                            result = result + Double.Parse(txt_display.Text);
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+
+
+                            txt_display.Text = "";
+
+                        }
+                        else if (operation == "-")
+                        {
+                            result = result - Double.Parse(txt_display.Text);
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_display.Text = "";
+
+                        }
+                        else if (operation == "*")
+                        {
+                            result = result * Double.Parse(txt_display.Text);
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_display.Text = "";
+
+                        }
+                        else if (operation == "/")
+                        {
+                            result = result / Double.Parse(txt_display.Text);
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_display.Text = "";
+                        }
+                        else if (operation == "Mod")
+                        {
+                            result = result % Double.Parse(txt_display.Text);
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_display.Text = "";
+                        }
+                        else if (operation == "x^y")
+                        {
+                            result = Math.Pow(result, Double.Parse(txt_display.Text));
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_display.Text = "";
+                        }
+                        enter_value = true;
+                    }
+                    else
+                    {
+                        Button b = (Button)sender;
+                        txt_showops.Text = txt_showops.Text.Remove(txt_showops.Text.Length - 1);
+                        operation = b.Text;
+                        txt_showops.Text = txt_showops.Text + b.Text;
+                    }
+                    //result = Double.Parse(txt_display.Text);
+
                 }
-             
-
-            }
-            else
-            {
-
-
-                if (operation == "+")
-                {
-
-                    result = result + Double.Parse(txt_display.Text);
-                    Button b = (Button)sender;
-                    operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-
-
-                    txt_display.Text = "";
-
-                }
-                else if (operation == "-")
-                {
-                    result = result - Double.Parse(txt_display.Text);
-                    Button b = (Button)sender;
-                    operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-                    txt_display.Text = "";
-
-                }
-                else if (operation == "*")
-                {
-                    result = result * Double.Parse(txt_display.Text);
-                    Button b = (Button)sender;
-                    operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-                    txt_display.Text = "";
-
-                }
-                else if (operation == "/")
-                {
-                    result = result / Double.Parse(txt_display.Text);
-                    Button b = (Button)sender;
-                    operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-                    txt_display.Text = "";
-                }
-                else if(operation == "Mod")
-                {
-                    result = result % Double.Parse(txt_display.Text);
-                    Button b = (Button)sender;
-                    operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-                    txt_display.Text = "";
-                }
-                else if (operation == "x^y")
-                {
-                    result = Math.Pow(result,Double.Parse(txt_display.Text));
-                    Button b = (Button)sender;
-                    operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-                    txt_display.Text = "";
-                }
-                //result = Double.Parse(txt_display.Text);
-
             }
         }
 
@@ -140,7 +166,7 @@ namespace Calculator
                 txt_showops.Text = "";
 
             }
-            else if (enter_value)
+            else if (!enter_value)
             {
                 if (operation == "+")
                 {
@@ -240,7 +266,7 @@ namespace Calculator
         }
         private static int Factorial(int n)
         {
-            if (n == 1)
+            if (n == 1 || n==0)
                 return 1;
             return (n * Factorial(n - 1));
         }
@@ -272,6 +298,10 @@ namespace Calculator
                 txt_display.Text = result.ToString();
                 enter_operation = true;
                 enter_value = false;
+                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
+                result = new double();
+
             }
             else if (converation == "x²")
             {
@@ -282,6 +312,10 @@ namespace Calculator
                 txt_display.Text = result.ToString();
                 enter_operation = true;
                 enter_value = false;
+                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
+                result = new double();
+
             }
             else if (converation == "✓")
             {
@@ -292,6 +326,10 @@ namespace Calculator
                 txt_display.Text = result.ToString();
                 enter_operation = true;
                 enter_value = false;
+                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
+                result = new double();
+
             }
             else if (converation == "%")
             {
@@ -300,6 +338,10 @@ namespace Calculator
                 txt_display.Text = "0";
                 enter_operation = true;
                 enter_value = false;
+                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
+                result = new double();
+
 
             }
             else if (converation == "±")
@@ -310,6 +352,7 @@ namespace Calculator
                 enter_operation = true;
                 enter_value = false;
 
+
             }
             else if(converation == "n!")
             {
@@ -317,10 +360,13 @@ namespace Calculator
 
                 txt_display.Text = Factorial(n).ToString();
                 txt_showops.Text = n.ToString() + "!";
-                txt_history.Text = txt_showops.Text + "=" + txt_display.Text + "\n" + txt_history.Text.ToString();
+                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
 
                 enter_operation = true;
                 enter_value = false;
+                result = new double();
+
             }
             else if (converation == "10x")
             {
@@ -332,6 +378,8 @@ namespace Calculator
 
                 enter_operation = true;
                 enter_value = false;
+                result = new double();
+
             }
             else if(converation == "Log")
             {
@@ -343,6 +391,8 @@ namespace Calculator
 
                 enter_operation = true;
                 enter_value = false;
+                result = new double();
+
             }
             else if (converation == "Exp")
             {
@@ -354,52 +404,203 @@ namespace Calculator
 
                 enter_operation = true;
                 enter_value = false;
+                result = new double();
+
             }
-            else if (converation == "sin")
+            else if (converation == "sin" || converation == "sinh")
             {
-                result = Math.Sin(Double.Parse(txt_display.Text));
-                txt_showops.Text = "sin(" + txt_display.Text + ")";
+                
+                if(degree)
+                {
+                    if (!hyp)
+                    {
+                        result = Math.Sin(Math.PI * Double.Parse(txt_display.Text) / 180.0);
+                    }
+                    else
+                    {
+                        result = Math.Sinh(Math.PI * Double.Parse(txt_display.Text) / 180.0);
+
+                    }
+
+                }
+                else
+                {
+                    if (!hyp)
+                    {
+                        result = Math.Sin(Double.Parse(txt_display.Text));
+                    }
+                    else
+                    {
+                        result = Math.Sinh(Double.Parse(txt_display.Text));
+
+                    }
+                }
+                if (!hyp)
+                {
+                    txt_showops.Text = "sin(" + txt_display.Text + ")";
+
+                }
+                else
+                {
+                    txt_showops.Text = "sinh(" + txt_display.Text + ")";
+
+                }
                 txt_display.Text = result.ToString();
 
                 txt_history.Text = txt_showops.Text + "=" + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                 enter_operation = true;
                 enter_value = false;
+                result = new double();
+
             }
-            else if (converation == "cos")
+            else if (converation == "cos" || converation == "cosh")
             {
-                result = Math.Cos(Double.Parse(txt_display.Text));
-                txt_showops.Text = "cos(" + txt_display.Text + ")";
+                if (degree)
+                {
+                    if(!hyp)
+                    {
+                        result = Math.Cos(Math.PI * Double.Parse(txt_display.Text) / 180.0);
+
+                    }
+                    else
+                    {
+                        result = Math.Cosh(Math.PI * Double.Parse(txt_display.Text) / 180.0);
+
+                    }
+
+                }
+                else
+                {
+                    if(!hyp)
+                    {
+                        result = Math.Cos(Double.Parse(txt_display.Text));
+
+                    }
+                    else
+                    {
+                        result = Math.Cosh(Double.Parse(txt_display.Text));
+
+                    }
+                }
+                if(!hyp)
+                {
+                    txt_showops.Text = "cos(" + txt_display.Text + ")";
+
+                }
+                else
+                {
+                    txt_showops.Text = "cosh(" + txt_display.Text + ")";
+
+                }
                 txt_display.Text = result.ToString();
 
                 txt_history.Text = txt_showops.Text + "=" + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                 enter_operation = true;
                 enter_value = false;
+                result = new double();
+
             }
-            else if (converation == "tan")
+            else if (converation == "tan" || converation == "tanh")
             {
-                result = Math.Tan(Double.Parse(txt_display.Text));
-                txt_showops.Text = "tan(" + txt_display.Text + ")";
+                if (degree)
+                {
+                    if (!hyp)
+                    {
+                        result = Math.Tan(Math.PI * Double.Parse(txt_display.Text) / 180.0);
+
+                    }
+                    else
+                    {
+                        result = Math.Tanh(Math.PI * Double.Parse(txt_display.Text) / 180.0);
+
+                    }
+
+                }
+                else
+                {
+                    if (!hyp)
+                    {
+                        result = Math.Tan(Double.Parse(txt_display.Text));
+
+                    }
+                    else
+                    {
+                        result = Math.Tanh(Double.Parse(txt_display.Text));
+
+                    }
+                }
+                if (!hyp)
+                {
+                    txt_showops.Text = "tan(" + txt_display.Text + ")";
+
+                }
+                else
+                {
+                    txt_showops.Text = "tanh(" + txt_display.Text + ")";
+
+                }
                 txt_display.Text = result.ToString();
 
                 txt_history.Text = txt_showops.Text + "=" + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                 enter_operation = true;
                 enter_value = false;
+                result = new double();
+
             }
-            result = new double();
-            
+
         }
 
-        private void btn_changsincos(object sender, EventArgs e)
-        {
-
-        }
+   
 
         private void pi_click(object sender, EventArgs e)
         {
             txt_display.Text = Math.PI.ToString();
+        }
+
+        private void txt_display_TextChanged(object sender, EventArgs e)
+        {
+            enter_value = false;
+        }
+
+        private void btn_deg_and_radi_Click(object sender, EventArgs e)
+        {
+            if(degree)
+            {
+                btn_deg_and_radi.Text = "RAD";
+                degree = false;
+            }
+            else
+            {
+                btn_deg_and_radi.Text = "DEG";
+                degree = true;
+            }
+        }
+
+    
+
+        private void btn_changhyp(object sender, EventArgs e)
+        {
+            if (!hyp)
+            {
+                btn_sin.Text = "sinh";
+                btn_cos.Text = "cosh";
+                btn_tan.Text = "tanh";
+                hyp = true;
+                btn_hyp.BackColor = System.Drawing.Color.Gainsboro;
+
+            }
+            else
+            {
+                btn_sin.Text = "sin";
+                btn_cos.Text = "cos";
+                btn_tan.Text = "tan";
+                hyp = false;
+                btn_hyp.BackColor = SystemColors.ButtonFace;
+
+            }
         }
     }
 }

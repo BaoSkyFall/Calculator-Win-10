@@ -251,9 +251,10 @@ namespace Calculator
         {
             if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
             {
+                combochange = true;
+
                 if (text1)
                 {
-                    combochange = true;
                     txt_text1_TextChanged(sender, e);
                 }
                 else

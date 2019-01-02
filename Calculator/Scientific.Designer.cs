@@ -30,9 +30,9 @@
         {
             this.txt_display = new System.Windows.Forms.TextBox();
             this.txt_showops = new System.Windows.Forms.TextBox();
-            this.button35 = new System.Windows.Forms.Button();
+            this.btn_hyp = new System.Windows.Forms.Button();
             this.button34 = new System.Windows.Forms.Button();
-            this.button32 = new System.Windows.Forms.Button();
+            this.btn_deg_and_radi = new System.Windows.Forms.Button();
             this.btn_tan = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.btn_sin = new System.Windows.Forms.Button();
@@ -84,6 +84,7 @@
             this.txt_display.TabIndex = 91;
             this.txt_display.Text = "0";
             this.txt_display.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txt_display.TextChanged += new System.EventHandler(this.txt_display_TextChanged);
             this.txt_display.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_display_KeyPress);
             // 
             // txt_showops
@@ -98,18 +99,19 @@
             this.txt_showops.TabIndex = 92;
             this.txt_showops.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // button35
+            // btn_hyp
             // 
-            this.button35.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button35.FlatAppearance.BorderSize = 0;
-            this.button35.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button35.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button35.Location = new System.Drawing.Point(100, 197);
-            this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(70, 40);
-            this.button35.TabIndex = 117;
-            this.button35.Text = "HYP";
-            this.button35.UseVisualStyleBackColor = false;
+            this.btn_hyp.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_hyp.FlatAppearance.BorderSize = 0;
+            this.btn_hyp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_hyp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_hyp.Location = new System.Drawing.Point(100, 197);
+            this.btn_hyp.Name = "btn_hyp";
+            this.btn_hyp.Size = new System.Drawing.Size(70, 40);
+            this.btn_hyp.TabIndex = 117;
+            this.btn_hyp.Text = "HYP";
+            this.btn_hyp.UseVisualStyleBackColor = false;
+            this.btn_hyp.Click += new System.EventHandler(this.btn_changhyp);
             // 
             // button34
             // 
@@ -124,18 +126,19 @@
             this.button34.Text = "F - E";
             this.button34.UseVisualStyleBackColor = false;
             // 
-            // button32
+            // btn_deg_and_radi
             // 
-            this.button32.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button32.FlatAppearance.BorderSize = 0;
-            this.button32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button32.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button32.Location = new System.Drawing.Point(20, 197);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(70, 40);
-            this.button32.TabIndex = 120;
-            this.button32.Text = "DEG";
-            this.button32.UseVisualStyleBackColor = false;
+            this.btn_deg_and_radi.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_deg_and_radi.FlatAppearance.BorderSize = 0;
+            this.btn_deg_and_radi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_deg_and_radi.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_deg_and_radi.Location = new System.Drawing.Point(20, 197);
+            this.btn_deg_and_radi.Name = "btn_deg_and_radi";
+            this.btn_deg_and_radi.Size = new System.Drawing.Size(70, 40);
+            this.btn_deg_and_radi.TabIndex = 120;
+            this.btn_deg_and_radi.Text = "DEG";
+            this.btn_deg_and_radi.UseVisualStyleBackColor = false;
+            this.btn_deg_and_radi.Click += new System.EventHandler(this.btn_deg_and_radi_Click);
             // 
             // btn_tan
             // 
@@ -212,12 +215,12 @@
             this.button14.BackColor = System.Drawing.Color.Gainsboro;
             this.button14.FlatAppearance.BorderSize = 0;
             this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button14.Location = new System.Drawing.Point(100, 289);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(70, 40);
             this.button14.TabIndex = 132;
-            this.button14.Text = "10x";
+            this.button14.Text = "10^x";
             this.button14.UseVisualStyleBackColor = false;
             this.button14.Click += new System.EventHandler(this.convert_click);
             // 
@@ -289,7 +292,6 @@
             this.button16.TabIndex = 140;
             this.button16.Text = "↑";
             this.button16.UseVisualStyleBackColor = false;
-            this.button16.Click += new System.EventHandler(this.btn_changsincos);
             // 
             // button25
             // 
@@ -690,9 +692,9 @@
             this.Controls.Add(this.btn_sin);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.btn_tan);
-            this.Controls.Add(this.button32);
+            this.Controls.Add(this.btn_deg_and_radi);
             this.Controls.Add(this.button34);
-            this.Controls.Add(this.button35);
+            this.Controls.Add(this.btn_hyp);
             this.Controls.Add(this.txt_showops);
             this.Controls.Add(this.txt_display);
             this.Name = "Scientific";
@@ -706,9 +708,9 @@
 
         private System.Windows.Forms.TextBox txt_display;
         private System.Windows.Forms.TextBox txt_showops;
-        private System.Windows.Forms.Button button35;
+        private System.Windows.Forms.Button btn_hyp;
         private System.Windows.Forms.Button button34;
-        private System.Windows.Forms.Button button32;
+        private System.Windows.Forms.Button btn_deg_and_radi;
         private System.Windows.Forms.Button btn_tan;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btn_sin;

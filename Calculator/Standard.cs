@@ -13,6 +13,8 @@ namespace Calculator
     public partial class Standard : UserControl
     {
         public string operation = "";
+        public string convertation = "";
+
         public double result;
         bool enter_value = true;
         bool enter_operation = true;
@@ -23,6 +25,7 @@ namespace Calculator
 
         private void number_click(object sender, EventArgs e)
         {
+            
             Button b = (Button)sender;
             if (txt_display.Text == "0")
             {
@@ -37,69 +40,92 @@ namespace Calculator
             }
             else
             {
-                txt_display.Text = txt_display.Text + b.Text;
+                if (txt_display.Text != "∞" && txt_display.Text != "NaN")
+                {
+                    txt_display.Text = txt_display.Text + b.Text;
+
+                }
+                else
+                {
+                    txt_showops.Text = "";
+                    txt_display.Text = b.Text;
+                }
             }
             
         }
 
         private void operation_click(object sender, EventArgs e)
         {
-            if (enter_operation)
+            if (txt_display.Text != "∞" && txt_display.Text != "NaN")
             {
-                Button b = (Button)sender;
-                operation = b.Text;
-                result = Double.Parse(txt_display.Text);
-                txt_showops.Text = txt_display.Text + b.Text;
-                txt_display.Text = "";
-                enter_operation = false;
-                enter_value = true;
 
-            }
-            else
-            {
-              
-
-                if (operation == "+")
+                if (enter_operation)
                 {
-
-                    result = result + Double.Parse(txt_display.Text);
                     Button b = (Button)sender;
                     operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-          
-
+                    result = Double.Parse(txt_display.Text);
+                    txt_showops.Text = txt_display.Text + b.Text;
                     txt_display.Text = "";
-              
-                }
-                else if (operation == "-")
-                {
-                    result = result - Double.Parse(txt_display.Text);
-                    Button b = (Button)sender;
-                    operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-                    txt_display.Text = "";
+                    enter_operation = false;
+                    enter_value = true;
 
                 }
-                else if (operation == "*")
+                else
                 {
-                    result = result * Double.Parse(txt_display.Text);
-                    Button b = (Button)sender;
-                    operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-                    txt_display.Text = "";
+
+                    if (!enter_value)
+                    {
+                        if (operation == "+")
+                        {
+
+                            result = result + Double.Parse(txt_display.Text);
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+
+
+                            txt_display.Text = "";
+
+                        }
+                        else if (operation == "-")
+                        {
+                            result = result - Double.Parse(txt_display.Text);
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_display.Text = "";
+
+                        }
+                        else if (operation == "*")
+                        {
+                            result = result * Double.Parse(txt_display.Text);
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_display.Text = "";
+
+                        }
+                        else if (operation == "/")
+                        {
+                            result = result / Double.Parse(txt_display.Text);
+                            Button b = (Button)sender;
+                            operation = b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_display.Text = "";
+                        }
+                        //result = Double.Parse(txt_display.Text);
+                        enter_value = true;
+
+                    }
+                    else
+                    {
+                        Button b = (Button)sender;
+                        txt_showops.Text = txt_showops.Text.Remove(txt_showops.Text.Length - 1);
+                        operation = b.Text;
+                        txt_showops.Text = txt_showops.Text + b.Text;
+                    }
 
                 }
-                else if (operation == "/")
-                {
-                    result = result / Double.Parse(txt_display.Text);
-                    Button b = (Button)sender;
-                    operation = b.Text;
-                    txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
-                    txt_display.Text = "";
-                }
-              
-                //result = Double.Parse(txt_display.Text);
-               
             }
         }
 
@@ -112,7 +138,7 @@ namespace Calculator
                 txt_showops.Text = "";
 
             }
-            else if(enter_value) 
+            else if(!enter_value) 
             {
                 if (operation == "+")
                 {
@@ -212,18 +238,24 @@ namespace Calculator
         private void convert_click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
-            operation = b.Text;
-            if (operation == "1∕x")
+            convertation = b.Text;
+            if (convertation == "1∕x")
             {
                 result = 1 / (Double.Parse(txt_display.Text));
 
 
-                txt_showops.Text = "1/" + txt_display.Text;
-                txt_display.Text = result.ToString();
+                txt_showops.Text = "1/" + txt_display.Text;     
+                    txt_display.Text = result.ToString();
+                
+                        txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
+
                 enter_operation = true;
                 enter_value = false;
+                result = new double();
+
             }
-            else if (operation == "x²")
+            else if (convertation == "x²")
             {
                 result = Math.Pow(Double.Parse(txt_display.Text),2);
                
@@ -232,8 +264,12 @@ namespace Calculator
                 txt_display.Text = result.ToString();
                 enter_operation = true;
                 enter_value = false;
+                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+                result = new double();
+
+
             }
-            else if (operation == "✓")
+            else if (convertation == "✓")
             {
                 result = Math.Sqrt(Double.Parse(txt_display.Text));
                
@@ -242,25 +278,41 @@ namespace Calculator
                 txt_display.Text = result.ToString();
                 enter_operation = true;
                 enter_value = false;
+                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+                result = new double();
+                result = new double();
+
+
             }
-            else if (operation == "%")
+            else if (convertation == "%")
             {
                 //result = result / Double.Parse(txt_display.Text);
                 //txt_showops.Text = "";
                 txt_display.Text = "0";
                 enter_operation = true;
                 enter_value = false;
+                result = new double();
+                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
 
             }
-            else if(operation == "±")
+            else if(convertation == "±")
             {
              
-                    result = -Double.Parse(txt_display.Text);
-                    txt_display.Text = result.ToString();
+                   double temp = -Double.Parse(txt_display.Text);
+                    txt_display.Text = temp.ToString();
+                        txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
 
-                
+
+
             }
-            result = new double();
+        }
+
+        private void txt_display_TextChanged(object sender, EventArgs e)
+        {
+           
+            enter_value = false;
+
         }
     }
 }
