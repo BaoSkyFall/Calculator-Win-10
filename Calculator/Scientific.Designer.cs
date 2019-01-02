@@ -145,7 +145,7 @@
             this.btn_tan.BackColor = System.Drawing.Color.Gainsboro;
             this.btn_tan.FlatAppearance.BorderSize = 0;
             this.btn_tan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_tan.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_tan.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_tan.Location = new System.Drawing.Point(328, 243);
             this.btn_tan.Name = "btn_tan";
             this.btn_tan.Size = new System.Drawing.Size(70, 40);
@@ -173,7 +173,7 @@
             this.btn_sin.BackColor = System.Drawing.Color.Gainsboro;
             this.btn_sin.FlatAppearance.BorderSize = 0;
             this.btn_sin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_sin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_sin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_sin.Location = new System.Drawing.Point(176, 243);
             this.btn_sin.Name = "btn_sin";
             this.btn_sin.Size = new System.Drawing.Size(70, 40);
@@ -617,10 +617,10 @@
             // txt_history
             // 
             this.txt_history.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_history.Location = new System.Drawing.Point(580, 34);
+            this.txt_history.Location = new System.Drawing.Point(434, 34);
             this.txt_history.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txt_history.Name = "txt_history";
-            this.txt_history.Size = new System.Drawing.Size(182, 358);
+            this.txt_history.Size = new System.Drawing.Size(328, 479);
             this.txt_history.TabIndex = 168;
             this.txt_history.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -636,13 +636,14 @@
             this.button33.TabIndex = 167;
             this.button33.Text = "🗑";
             this.button33.UseVisualStyleBackColor = false;
+            this.button33.Click += new System.EventHandler(this.delete_history);
             // 
             // btn_cos
             // 
             this.btn_cos.BackColor = System.Drawing.Color.Gainsboro;
             this.btn_cos.FlatAppearance.BorderSize = 0;
             this.btn_cos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_cos.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cos.Location = new System.Drawing.Point(252, 243);
             this.btn_cos.Name = "btn_cos";
             this.btn_cos.Size = new System.Drawing.Size(70, 40);

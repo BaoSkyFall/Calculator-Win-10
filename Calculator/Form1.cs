@@ -74,9 +74,9 @@ namespace Calculator
                 lbl_title.Text = "Programmer";
                 this.BackColor = SystemColors.ButtonFace;
                 btn_menu.BackColor = SystemColors.ButtonFace;
-                history1.Visible = true;
-                history1.BringToFront();
+                history1.Visible = false;
                 programmer1.BringToFront();
+
                 treeView1.Visible = false;
 
             }
@@ -151,6 +151,5 @@ namespace Calculator
             }
            
         }
-
     }
 }

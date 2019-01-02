@@ -468,10 +468,10 @@
             // txt_history
             // 
             this.txt_history.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_history.Location = new System.Drawing.Point(548, 39);
+            this.txt_history.Location = new System.Drawing.Point(428, 39);
             this.txt_history.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txt_history.Name = "txt_history";
-            this.txt_history.Size = new System.Drawing.Size(204, 441);
+            this.txt_history.Size = new System.Drawing.Size(324, 441);
             this.txt_history.TabIndex = 68;
             this.txt_history.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -487,6 +487,7 @@
             this.button27.TabIndex = 64;
             this.button27.Text = "🗑";
             this.button27.UseVisualStyleBackColor = false;
+            this.button27.Click += new System.EventHandler(this.delete_history);
             // 
             // Standard
             // 

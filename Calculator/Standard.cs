@@ -64,7 +64,7 @@ namespace Calculator
                     Button b = (Button)sender;
                     operation = b.Text;
                     result = Double.Parse(txt_display.Text);
-                    txt_showops.Text = txt_display.Text + b.Text;
+                    txt_showops.Text = txt_display.Text + " " + b.Text + " ";
                     txt_display.Text = "";
                     enter_operation = false;
                     enter_value = true;
@@ -81,7 +81,7 @@ namespace Calculator
                             result = result + Double.Parse(txt_display.Text);
                             Button b = (Button)sender;
                             operation = b.Text;
-                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
 
 
                             txt_display.Text = "";
@@ -92,7 +92,7 @@ namespace Calculator
                             result = result - Double.Parse(txt_display.Text);
                             Button b = (Button)sender;
                             operation = b.Text;
-                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             txt_display.Text = "";
 
                         }
@@ -101,7 +101,7 @@ namespace Calculator
                             result = result * Double.Parse(txt_display.Text);
                             Button b = (Button)sender;
                             operation = b.Text;
-                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             txt_display.Text = "";
 
                         }
@@ -110,7 +110,7 @@ namespace Calculator
                             result = result / Double.Parse(txt_display.Text);
                             Button b = (Button)sender;
                             operation = b.Text;
-                            txt_showops.Text = txt_showops.Text + txt_display.Text + b.Text;
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             txt_display.Text = "";
                         }
                         //result = Double.Parse(txt_display.Text);
@@ -122,7 +122,7 @@ namespace Calculator
                         Button b = (Button)sender;
                         txt_showops.Text = txt_showops.Text.Remove(txt_showops.Text.Length - 1);
                         operation = b.Text;
-                        txt_showops.Text = txt_showops.Text + b.Text;
+                        txt_showops.Text = txt_showops.Text + " " + b.Text + " ";
                     }
 
                 }
@@ -144,7 +144,7 @@ namespace Calculator
                 {
                    
                         result = result + Double.Parse(txt_display.Text);
-                        txt_history.Text = txt_showops.Text + txt_display.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString(); 
+                        txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString(); 
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
                         enter_operation = true;
@@ -156,7 +156,7 @@ namespace Calculator
                 else if (operation == "-")
                 {
                     result = result - Double.Parse(txt_display.Text);
-                    txt_history.Text = txt_showops.Text + txt_display.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString(); ;
+                    txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString(); ;
 
                     txt_showops.Text = "";
                     txt_display.Text = result.ToString();
@@ -168,7 +168,7 @@ namespace Calculator
                 else if (operation == "*")
                 {
                     result = result * Double.Parse(txt_display.Text);
-                    txt_history.Text = txt_showops.Text + txt_display.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+                    txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                     txt_showops.Text = "";
                     txt_display.Text = result.ToString();
@@ -180,7 +180,7 @@ namespace Calculator
                 else if (operation == "/")
                 {
                     result = result / Double.Parse(txt_display.Text);
-                    txt_history.Text = txt_showops.Text + txt_display.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+                    txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                     txt_showops.Text = "";
                     txt_display.Text = result.ToString();
@@ -244,10 +244,10 @@ namespace Calculator
                 result = 1 / (Double.Parse(txt_display.Text));
 
 
-                txt_showops.Text = "1/" + txt_display.Text;     
-                    txt_display.Text = result.ToString();
-                
-                        txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+                txt_showops.Text = "1 / " + txt_display.Text;
+                txt_display.Text = result.ToString();
+
+                txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
 
                 enter_operation = true;
@@ -257,14 +257,14 @@ namespace Calculator
             }
             else if (convertation == "x²")
             {
-                result = Math.Pow(Double.Parse(txt_display.Text),2);
-               
+                result = Math.Pow(Double.Parse(txt_display.Text), 2);
 
-                txt_showops.Text = txt_display.Text+"²";
+
+                txt_showops.Text = txt_display.Text + "²";
                 txt_display.Text = result.ToString();
                 enter_operation = true;
                 enter_value = false;
-                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+                txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
                 result = new double();
 
 
@@ -272,13 +272,13 @@ namespace Calculator
             else if (convertation == "✓")
             {
                 result = Math.Sqrt(Double.Parse(txt_display.Text));
-               
 
-                txt_showops.Text = "✓"+ txt_display.Text;
+
+                txt_showops.Text = "✓ " + txt_display.Text;
                 txt_display.Text = result.ToString();
                 enter_operation = true;
                 enter_value = false;
-                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+                txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
                 result = new double();
                 result = new double();
 
@@ -292,16 +292,16 @@ namespace Calculator
                 enter_operation = true;
                 enter_value = false;
                 result = new double();
-                txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+                txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
 
             }
-            else if(convertation == "±")
+            else if (convertation == "±")
             {
-             
-                   double temp = -Double.Parse(txt_display.Text);
-                    txt_display.Text = temp.ToString();
-                        txt_history.Text = txt_showops.Text + "=" + result.ToString() + "\n" + txt_history.Text.ToString();
+
+                double temp = -Double.Parse(txt_display.Text);
+                txt_display.Text = temp.ToString();
+                txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
 
 
@@ -313,6 +313,11 @@ namespace Calculator
            
             enter_value = false;
 
+        }
+
+        private void delete_history(object sender, EventArgs e)
+        {
+            txt_history.Text = "";
         }
     }
 }

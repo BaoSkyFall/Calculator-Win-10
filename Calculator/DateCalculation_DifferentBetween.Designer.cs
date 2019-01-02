@@ -109,7 +109,7 @@
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "DateCalculation_DifferentBetween";
-            this.Size = new System.Drawing.Size(341, 337);
+            this.Size = new System.Drawing.Size(526, 337);
             this.ResumeLayout(false);
             this.PerformLayout();
 
