@@ -87,6 +87,7 @@
             // button42
             // 
             this.button42.BackColor = System.Drawing.Color.Gainsboro;
+            this.button42.Enabled = false;
             this.button42.FlatAppearance.BorderSize = 0;
             this.button42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button42.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -112,19 +112,22 @@ namespace Calculator
         }
         private void number_click(object sender, EventArgs e)
         {
+
+
+
             Button b = (Button)sender;
             if (txt_display.Text == "0")
             {
                 txt_display.Text = "";
             }
-            if (b.Text == ".")
+            if (b.Text == "." && txt_display.Text != "" && txt_display.Text != "NaN" && txt_display.Text != "∞")
             {
                 if (!txt_display.Text.Contains("."))
                 {
                     txt_display.Text = txt_display.Text + ".";
                 }
             }
-            else
+            else if(b.Text != ".")
             {
                 if (txt_display.Text != "∞" && txt_display.Text != "NaN")
                 {
@@ -137,6 +140,7 @@ namespace Calculator
                     txt_display.Text = b.Text;
                 }
             }
+
         }
         private void clearall_Click(object sender, EventArgs e)
         {
@@ -162,40 +166,45 @@ namespace Calculator
         }
         public  void Convert()
         {
-            if (mode == "DEC")
+            if (txt_display.Text != "NaN" && txt_display.Text != "" && txt_display.Text != "∞")
             {
-                txt_dec.Text = txt_display.Text;
-                temp_int_convert = int.Parse(txt_display.Text);
-                txt_hex.Text = System.Convert.ToString(temp_int_convert, 16).ToUpper();
-                txt_bin.Text = System.Convert.ToString(temp_int_convert, 2);
-                txt_oct.Text = System.Convert.ToString(temp_int_convert, 8);
-            }
-            else if (mode == "HEX")
-            {
-                txt_hex.Text = txt_display.Text;
-                temp_int_convert = int.Parse(txt_hex.Text, System.Globalization.NumberStyles.HexNumber);
-                txt_dec.Text = System.Convert.ToString(temp_int_convert, 10);
-                txt_bin.Text = System.Convert.ToString(temp_int_convert, 2);
-                txt_oct.Text = System.Convert.ToString(temp_int_convert, 8);
-            }
-            else if(mode == "OCT")
-            {
-                txt_oct.Text = txt_display.Text;
-                temp_int_convert = System.Convert.ToInt32(txt_oct.Text, 8);
-                txt_dec.Text = System.Convert.ToString(temp_int_convert, 10);
-                txt_bin.Text = System.Convert.ToString(temp_int_convert, 2);
-                txt_hex.Text = System.Convert.ToString(temp_int_convert, 16).ToUpper();
+
+
+                if (mode == "DEC")
+                {
+                    txt_dec.Text = txt_display.Text;
+                    temp_int_convert = int.Parse(txt_display.Text);
+                    txt_hex.Text = System.Convert.ToString(temp_int_convert, 16).ToUpper();
+                    txt_bin.Text = System.Convert.ToString(temp_int_convert, 2);
+                    txt_oct.Text = System.Convert.ToString(temp_int_convert, 8);
+                }
+                else if (mode == "HEX")
+                {
+                    txt_hex.Text = txt_display.Text;
+                    temp_int_convert = int.Parse(txt_hex.Text, System.Globalization.NumberStyles.HexNumber);
+                    txt_dec.Text = System.Convert.ToString(temp_int_convert, 10);
+                    txt_bin.Text = System.Convert.ToString(temp_int_convert, 2);
+                    txt_oct.Text = System.Convert.ToString(temp_int_convert, 8);
+                }
+                else if (mode == "OCT")
+                {
+                    txt_oct.Text = txt_display.Text;
+                    temp_int_convert = System.Convert.ToInt32(txt_oct.Text, 8);
+                    txt_dec.Text = System.Convert.ToString(temp_int_convert, 10);
+                    txt_bin.Text = System.Convert.ToString(temp_int_convert, 2);
+                    txt_hex.Text = System.Convert.ToString(temp_int_convert, 16).ToUpper();
+
+                }
+                else if (mode == "BIN")
+                {
+                    txt_bin.Text = txt_display.Text;
+                    temp_int_convert = System.Convert.ToInt32(txt_bin.Text, 2);
+                    txt_dec.Text = System.Convert.ToString(temp_int_convert, 10);
+                    txt_oct.Text = System.Convert.ToString(temp_int_convert, 8);
+                    txt_hex.Text = System.Convert.ToString(temp_int_convert, 16).ToUpper();
+                }
 
             }
-            else if(mode =="BIN")
-            {
-                txt_bin.Text = txt_display.Text;
-                temp_int_convert = System.Convert.ToInt32(txt_bin.Text, 2);
-                txt_dec.Text = System.Convert.ToString(temp_int_convert, 10);
-                txt_oct.Text = System.Convert.ToString(temp_int_convert, 8);
-                txt_hex.Text = System.Convert.ToString(temp_int_convert, 16).ToUpper();
-            }
-
         }
         private void Text_Change(object sender, EventArgs e)
         {
@@ -209,7 +218,7 @@ namespace Calculator
 
         private void operation_click(object sender, EventArgs e)
         {
-            if (txt_display.Text != "∞" && txt_display.Text != "NaN")
+            if (txt_display.Text != "NaN" && txt_display.Text != "" && txt_display.Text != "∞")
             {
                 if (enter_operation)
                 {
@@ -263,11 +272,21 @@ namespace Calculator
                         }
                         else if (operation == "/")
                         {
-                            result = result / int.Parse(txt_dec.Text);
-                            Button b = (Button)sender;
-                            operation = b.Text;
-                            txt_showops.Text = txt_showops.Text + txt_display.Text +" " + b.Text + " ";
-                            txt_display.Text = "";
+                            if(txt_dec.Text!= "0")
+                            {
+                                result = result / int.Parse(txt_dec.Text);
+                                Button b = (Button)sender;
+                                operation = b.Text;
+                                txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
+                                txt_display.Text = "";
+                            }
+                            else
+                            {
+                                Button b = (Button)sender;
+                                txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
+                                txt_display.Text = "∞";
+                            }
+                     
                         }
                         else if (operation == "Mod")
                         {
@@ -342,135 +361,212 @@ namespace Calculator
         }
         private void btn_equal_click(object sender, EventArgs e)
         {
-            if (txt_display.Text == "")
+            if (txt_display.Text != "NaN" && txt_display.Text != "" && txt_display.Text != "∞")
             {
-                txt_display.Text = txt_showops.Text.Remove(txt_showops.Text.Length - 1);
-                enter_operation = true;
-                txt_showops.Text = "";
 
+
+                if (txt_display.Text == "")
+                {
+                    txt_display.Text = txt_showops.Text.Remove(txt_showops.Text.Length - 1);
+                    enter_operation = true;
+                    txt_showops.Text = "";
+
+                }
+                else if (!enter_value)
+                {
+                    if (operation == "+")
+                    {
+                        result = result + int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+
+                        enter_operation = true;
+                        enter_value = false;
+                    }
+                    else if (operation == "-")
+                    {
+                        result = result - int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+
+                        enter_operation = true;
+                        enter_value = false;
+
+                    }
+                    else if (operation == "*")
+                    {
+                        result = result * int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+
+                        enter_value = false;
+                        enter_operation = true;
+
+                    }
+                    else if (operation == "/")
+                    {
+                        if (txt_dec.Text != "0")
+                        {
+                            result = result / int.Parse(txt_dec.Text);
+
+
+                            txt_showops.Text = "";
+                        }
+                        else
+                        {
+                            txt_display.Text = "∞";
+                        }
+
+
+                        enter_operation = true;
+                        enter_value = false;
+                    }
+                    else if (operation == "Mod")
+                    {
+                        result = result % int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+                        enter_operation = true;
+                        enter_value = false;
+                    }
+                    else if (operation == "And")
+                    {
+                        result = result & int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+
+                        enter_operation = true;
+                        enter_value = false;
+                    }
+                    else if (operation == "Or")
+                    {
+                        result = result | int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+
+                        enter_operation = true;
+                        enter_value = false;
+                    }
+                    else if (operation == "Xor")
+                    {
+                        result = result ^ int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+
+                        enter_operation = true;
+                        enter_value = false;
+                    }
+                    else if (operation == "Xor")
+                    {
+                        result = result ^ int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+                        enter_operation = true;
+                        enter_value = false;
+                    }
+                    else if (operation == "Lsh")
+                    {
+                        result <<= int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+                        enter_operation = true;
+                        enter_value = false;
+                    }
+                    else if (operation == "Rsh")
+                    {
+                        result >>= int.Parse(txt_dec.Text);
+
+
+                        txt_showops.Text = "";
+
+                        enter_operation = true;
+                        enter_value = false;
+                    }
+                    if (txt_display.Text != "∞" && txt_display.Text != "NaN")
+                    {
+                        // Chuyển kiểu
+                        if (mode == "DEC")
+                        {
+                            txt_display.Text = result.ToString();
+
+                        }
+                        else if (mode == "HEX")
+                        {
+                            txt_display.Text = System.Convert.ToString(result, 16).ToUpper();
+
+
+
+                        }
+                        else if (mode == "BIN")
+                        {
+                            txt_display.Text = System.Convert.ToString(result, 2);
+
+                        }
+                        else if (mode == "OCT")
+                        {
+                            txt_display.Text = System.Convert.ToString(result, 8);
+
+                        }
+
+                    }
+
+                    result = new int();
+                }
             }
-            else if (!enter_value)
+
+        }
+
+        private void convert_click(object sender, EventArgs e)
+        {
+            if (txt_display.Text != "NaN" && txt_display.Text != "" && txt_display.Text != "∞")
             {
-                if (operation == "+")
-                {
-                    result = result + int.Parse(txt_dec.Text);
-              
-                 
-                    txt_showops.Text = "";
-                   
 
-                    enter_operation = true;
-                    enter_value = false;
-                }
-                else if (operation == "-")
-                {
-                    result = result - int.Parse(txt_dec.Text);
-                   
 
-                    txt_showops.Text = "";
-                   
+                Button b = (Button)sender;
+                convertation = b.Text;
+                if (convertation == "Not")
+                {
+
+
+                    result = ~int.Parse(txt_dec.Text);
+
+
+                    txt_showops.Text = "Not ( " + txt_display.Text + " )";
 
                     enter_operation = true;
                     enter_value = false;
 
+
                 }
-                else if (operation == "*")
+                else if (convertation == "±")
                 {
-                    result = result * int.Parse(txt_dec.Text);
-
-
-                    txt_showops.Text = "";
-                   
-
-                    enter_value = false;
-                    enter_operation = true;
+                    if (txt_display.Text != "")
+                    {
+                        result = -int.Parse(txt_dec.Text);
+                        txt_showops.Text = "- " + txt_display.Text;
+                        enter_operation = true;
+                        enter_value = false;
+                    }
 
                 }
-                else if (operation == "/")
-                {
-                    result = result / int.Parse(txt_dec.Text);
-                  
-
-                    txt_showops.Text = "";
-                   
-
-                    enter_operation = true;
-                    enter_value = false;
-                }
-                else if (operation == "Mod")
-                {
-                    result = result % int.Parse(txt_dec.Text);
-              
-
-                    txt_showops.Text = "";
-                   
-                    enter_operation = true;
-                    enter_value = false;
-                }
-                else if (operation == "And")
-                {
-                    result = result & int.Parse(txt_dec.Text);
-
-
-                    txt_showops.Text = "";
-                   
-
-                    enter_operation = true;
-                    enter_value = false;
-                }
-                else if (operation == "Or")
-                {
-                    result = result | int.Parse(txt_dec.Text);
-
-
-                    txt_showops.Text = "";
-                   
-
-                    enter_operation = true;
-                    enter_value = false;
-                }
-                else if (operation == "Xor")
-                {
-                    result = result ^ int.Parse(txt_dec.Text);
-
-
-                    txt_showops.Text = "";
-                   
-
-                    enter_operation = true;
-                    enter_value = false;
-                }
-                else if (operation == "Xor")
-                {
-                    result = result ^ int.Parse(txt_dec.Text);
-
-
-                    txt_showops.Text = "";
-                   
-                    enter_operation = true;
-                    enter_value = false;
-                }
-                else if (operation == "Lsh")
-                {
-                    result <<= int.Parse(txt_dec.Text);
-
-
-                    txt_showops.Text = "";
-                   
-                    enter_operation = true;
-                    enter_value = false;
-                }
-                else if (operation == "Rsh")
-                {
-                    result >>= int.Parse(txt_dec.Text);
-
-
-                    txt_showops.Text = "";
-                   
-                    enter_operation = true;
-                    enter_value = false;
-                }
-                // Chuyển kiểu
                 if (mode == "DEC")
                 {
                     txt_display.Text = result.ToString();
@@ -493,63 +589,8 @@ namespace Calculator
                     txt_display.Text = System.Convert.ToString(result, 8);
 
                 }
-
                 result = new int();
             }
-
-        }
-
-        private void convert_click(object sender, EventArgs e)
-        {
-            Button b = (Button)sender;
-            convertation = b.Text;
-            if(convertation == "Not")
-            {
-               
-
-                result = ~int.Parse(txt_dec.Text);
-
-
-                txt_showops.Text = "Not ( " + txt_display.Text + " )";
-               
-                enter_operation = true;
-                enter_value = false;
-               
-
-            }
-            else if(convertation == "±")
-            {
-                result = -int.Parse(txt_dec.Text);
-
-
-                txt_showops.Text = "- " + txt_display.Text;
-
-                enter_operation = true;
-                enter_value = false;
-            }
-            if (mode == "DEC")
-            {
-                txt_display.Text = result.ToString();
-
-            }
-            else if (mode == "HEX")
-            {
-                txt_display.Text = System.Convert.ToString(result, 16).ToUpper();
-
-
-
-            }
-            else if (mode == "BIN")
-            {
-                txt_display.Text = System.Convert.ToString(result, 2);
-
-            }
-            else if (mode == "OCT")
-            {
-                txt_display.Text = System.Convert.ToString(result, 8);
-
-            }
-            result = new int();
 
         }
 
