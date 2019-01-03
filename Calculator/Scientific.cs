@@ -123,19 +123,11 @@ namespace Calculator
                 {
                     Button b = (Button)sender;
                     operation = b.Text;
-                    if (b.Text == "x^y")
-                    {
-                        
-                        txt_showops.Text = txt_display.Text + " ^ ";
-                        operation_str = txt_showops.Text;
+                    result = new double();
 
-                        txt_display.Text = "";
-                        enter_operation = false;
-                        enter_value = true;
-                    }
-                    else if(b.Text == "Mod")
+                    if (b.Text == "Mod")
                     {
-                        
+
                         txt_showops.Text = txt_display.Text + " % ";
                         operation_str = txt_showops.Text;
 
@@ -145,7 +137,7 @@ namespace Calculator
                     }
                     else
                     {
-                       
+
                         txt_showops.Text = txt_display.Text + " " + b.Text + " ";
                         operation_str = txt_showops.Text;
 
@@ -153,9 +145,10 @@ namespace Calculator
                         enter_operation = false;
                         enter_value = true;
                     }
-
-
                 }
+
+
+
                 else
                 {
 
@@ -167,8 +160,8 @@ namespace Calculator
                         if (operation == "+")
                         {
 
-                           
-                           
+
+
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             operation_str = txt_showops.Text;
 
@@ -177,8 +170,8 @@ namespace Calculator
                         }
                         else if (operation == "-")
                         {
-                           
-                          
+
+
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             operation_str = txt_showops.Text;
 
@@ -187,8 +180,8 @@ namespace Calculator
                         }
                         else if (operation == "*")
                         {
-                          
-                          
+
+
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             operation_str = txt_showops.Text;
 
@@ -197,7 +190,7 @@ namespace Calculator
                         }
                         else if (operation == "/")
                         {
-                      
+
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             operation_str = txt_showops.Text;
 
@@ -205,21 +198,14 @@ namespace Calculator
                         }
                         else if (operation == "Mod")
                         {
-                            
-                        
+
+
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + "%" + " ";
                             operation_str = txt_showops.Text;
 
                             txt_display.Text = "";
                         }
-                        else if (operation == "x^y")
-                        {
-                        
-                            txt_showops.Text = txt_showops.Text + txt_display.Text + " " + "^" + " ";
-                            operation_str = txt_showops.Text;
 
-                            txt_display.Text = "";
-                        }
                         enter_value = true;
                     }
                     else
@@ -238,6 +224,7 @@ namespace Calculator
                 }
             }
         }
+        
 
         private void btn_equal_click(object sender, EventArgs e)
         {
@@ -256,9 +243,16 @@ namespace Calculator
                 }
                 else if (!enter_value)
                 {
-                 
-                        result = Calculate(operation_str + txt_display.Text);
-                        txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString(); ;
+                 if(txt_display.Text.Contains("."))
+                    {
+                        result = Calculate(operation_str + txt_display.Text) * 1.0;
+                    }
+                 else
+                    {
+                        result = Calculate(operation_str + txt_display.Text + ".0") * 1.0;
+                    }
+                        
+                        txt_history.Text = txt_showops.Text + txt_display.Text+ " = " + result.ToString() + "\n" + txt_history.Text.ToString(); ;
 
 
                         txt_showops.Text = "";
@@ -333,7 +327,7 @@ namespace Calculator
 
         private void convert_click(object sender, EventArgs e)
         {
-            if (txt_display.Text != "NaN" && txt_display.Text != "" && txt_display.Text != "∞" && txt_display.Text != "-∞")
+             if (txt_display.Text != "NaN" && txt_display.Text != "" && txt_display.Text != "∞" && txt_display.Text != "-∞")
             {
 
 
@@ -380,7 +374,7 @@ namespace Calculator
                     operation_str = txt_showops.Text;
 
                     txt_showops.Text = txt_showops.Text +" ✓" + txt_display.Text;
-                    txt_history.Text = txt_display.Text + " ✓" + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
+                    txt_history.Text =  " ✓"+ txt_display.Text  + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                     txt_display.Text = result.ToString();
                     enter_operation = true;
@@ -434,6 +428,20 @@ namespace Calculator
 
                     txt_showops.Text = txt_showops.Text + "10 ^ " + txt_display.Text;
                     txt_history.Text = "10 ^ " + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
+                    txt_display.Text = result.ToString();
+
+                    enter_operation = true;
+                    enter_value = false;
+                    result = new double();
+
+                }
+                else if (converation == "ln")
+                {
+                    result = Math.Log(Double.Parse(txt_display.Text));
+                    operation_str = txt_showops.Text;
+
+                    txt_showops.Text = txt_showops.Text + "Ln(" + txt_display.Text + ")";
+                    txt_history.Text = "Ln(" + txt_display.Text + ") = " + result.ToString() + "\n" + txt_history.Text.ToString();
                     txt_display.Text = result.ToString();
 
                     enter_operation = true;

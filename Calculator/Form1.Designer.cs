@@ -54,7 +54,7 @@
             System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("");
             System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("    Temperature");
             System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode(" ");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("   Speed");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("    Speed");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.currency1 = new Calculator.Currency();
             this.dateCalculation1 = new Calculator.DateCalculation();
@@ -196,7 +196,7 @@
             treeNode26.Name = "Node6";
             treeNode26.Text = " ";
             treeNode27.Name = "node_speed";
-            treeNode27.Text = "   Speed";
+            treeNode27.Text = "    Speed";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,

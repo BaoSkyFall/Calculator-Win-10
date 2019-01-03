@@ -168,7 +168,6 @@ namespace Calculator
                 {
                     txt_text1.Text = "";
                     txt_text2.Text = "";
-
                 }
 
             }

@@ -573,6 +573,7 @@
             // 
             this.txt_hex.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txt_hex.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_hex.Enabled = false;
             this.txt_hex.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_hex.Location = new System.Drawing.Point(73, 104);
             this.txt_hex.Multiline = true;
@@ -586,6 +587,7 @@
             // 
             this.txt_dec.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txt_dec.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_dec.Enabled = false;
             this.txt_dec.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_dec.Location = new System.Drawing.Point(73, 140);
             this.txt_dec.Multiline = true;
@@ -609,6 +611,7 @@
             // 
             this.txt_oct.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txt_oct.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_oct.Enabled = false;
             this.txt_oct.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_oct.Location = new System.Drawing.Point(73, 176);
             this.txt_oct.Multiline = true;
@@ -631,6 +634,7 @@
             // 
             this.txt_bin.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txt_bin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_bin.Enabled = false;
             this.txt_bin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_bin.Location = new System.Drawing.Point(73, 212);
             this.txt_bin.Multiline = true;

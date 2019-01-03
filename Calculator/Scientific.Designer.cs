@@ -31,7 +31,6 @@
             this.txt_display = new System.Windows.Forms.TextBox();
             this.txt_showops = new System.Windows.Forms.TextBox();
             this.btn_hyp = new System.Windows.Forms.Button();
-            this.button34 = new System.Windows.Forms.Button();
             this.btn_deg_and_radi = new System.Windows.Forms.Button();
             this.btn_tan = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -113,19 +112,6 @@
             this.btn_hyp.UseVisualStyleBackColor = false;
             this.btn_hyp.Click += new System.EventHandler(this.btn_changhyp);
             // 
-            // button34
-            // 
-            this.button34.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button34.FlatAppearance.BorderSize = 0;
-            this.button34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button34.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button34.Location = new System.Drawing.Point(172, 197);
-            this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(81, 40);
-            this.button34.TabIndex = 118;
-            this.button34.Text = "F - E";
-            this.button34.UseVisualStyleBackColor = false;
-            // 
             // btn_deg_and_radi
             // 
             this.btn_deg_and_radi.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -164,9 +150,9 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(70, 40);
             this.button9.TabIndex = 127;
-            this.button9.Text = "x^y";
+            this.button9.Text = "ln";
             this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.operation_click);
+            this.button9.Click += new System.EventHandler(this.convert_click);
             // 
             // btn_sin
             // 
@@ -696,7 +682,6 @@
             this.Controls.Add(this.button9);
             this.Controls.Add(this.btn_tan);
             this.Controls.Add(this.btn_deg_and_radi);
-            this.Controls.Add(this.button34);
             this.Controls.Add(this.btn_hyp);
             this.Controls.Add(this.txt_showops);
             this.Controls.Add(this.txt_display);
@@ -712,7 +697,6 @@
         private System.Windows.Forms.TextBox txt_display;
         private System.Windows.Forms.TextBox txt_showops;
         private System.Windows.Forms.Button btn_hyp;
-        private System.Windows.Forms.Button button34;
         private System.Windows.Forms.Button btn_deg_and_radi;
         private System.Windows.Forms.Button btn_tan;
         private System.Windows.Forms.Button button9;

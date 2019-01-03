@@ -237,17 +237,15 @@
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "Carats",
-            "Miligrams",
-            "Centigrams",
-            "Grams",
-            "Dekagrams",
-            "Hectograms",
-            "Kilograms",
-            "Metric Tones",
-            "Ounces",
-            "Pounds",
-            "Stone"});
+            "Sqr Milli",
+            "Sqr Centi",
+            "Sqr Met",
+            "Hectares",
+            "Sqr Kilo",
+            "Sqr Inches",
+            "Sqr Feet",
+            "Sqr Yards",
+            "Sqr Miles"});
             this.comboBox2.Location = new System.Drawing.Point(25, 392);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(378, 37);
@@ -279,17 +277,15 @@
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Carats",
-            "Miligrams",
-            "Centigrams",
-            "Grams",
-            "Dekagrams",
-            "Hectograms",
-            "Kilograms",
-            "Metric Tones",
-            "Ounces",
-            "Pounds",
-            "Stone"});
+            "Sqr Milli",
+            "Sqr Centi",
+            "Sqr Met",
+            "Hectares",
+            "Sqr Kilo",
+            "Sqr Inches",
+            "Sqr Feet",
+            "Sqr Yards",
+            "Sqr Miles"});
             this.comboBox1.Location = new System.Drawing.Point(25, 187);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(378, 37);
