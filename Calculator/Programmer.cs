@@ -517,6 +517,16 @@ namespace Calculator
                
 
             }
+            else if(convertation == "±")
+            {
+                result = -int.Parse(txt_dec.Text);
+
+
+                txt_showops.Text = "- " + txt_display.Text;
+
+                enter_operation = true;
+                enter_value = false;
+            }
             if (mode == "DEC")
             {
                 txt_display.Text = result.ToString();

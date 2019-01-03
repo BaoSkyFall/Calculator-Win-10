@@ -266,9 +266,19 @@ namespace Calculator
         }
         private static int Factorial(int n)
         {
-            if (n == 1 || n==0)
+            if (n < 0)
+            {
+
+                return -1;
+            }
+            else if (n == 1 || n == 0)
+            {
                 return 1;
+
+            }
+
             return (n * Factorial(n - 1));
+
         }
 
         private void clearall_Click(object sender, EventArgs e)
@@ -357,10 +367,17 @@ namespace Calculator
             else if (converation == "n!")
             {
                 int n = int.Parse(txt_display.Text);
-
+                
                 txt_display.Text = Factorial(n).ToString();
-                txt_showops.Text = n.ToString() + "!";
-                txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
+                if(txt_display.Text != "-1")
+                {
+                    txt_showops.Text = n.ToString() + "!";
+                    txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
+                }
+                else
+                {
+                    txt_display.Text = "NaN";
+                }
 
 
                 enter_operation = true;

@@ -680,8 +680,8 @@
             // panel_bin
             // 
             this.panel_bin.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel_bin.Controls.Add(this.button5);
             this.panel_bin.Controls.Add(this.btn_1);
+            this.panel_bin.Controls.Add(this.button5);
             this.panel_bin.Location = new System.Drawing.Point(2, 90);
             this.panel_bin.Margin = new System.Windows.Forms.Padding(0);
             this.panel_bin.Name = "panel_bin";
