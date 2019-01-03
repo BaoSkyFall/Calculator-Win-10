@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.CodeDom;
+using System.CodeDom.Compiler;
 namespace Calculator
 {
     public partial class Scientific : UserControl
@@ -16,13 +17,71 @@ namespace Calculator
         public string converation = "";
         public bool degree = true;
         public bool hyp = false;
-
+        
         public double result;
         bool enter_value = true;
         bool enter_operation = true;
         public Scientific()
         {
             InitializeComponent();
+        }
+        static double Calculate(string formula)
+        {
+            // create compile unit
+            CodeCompileUnit compileUnit = new CodeCompileUnit();
+            // add a namespace
+            CodeNamespace codeNamespace = new CodeNamespace("MyCalculator");
+            compileUnit.Namespaces.Add(codeNamespace);
+
+            // add imports/using
+            codeNamespace.Imports.Add(new CodeNamespaceImport("System"));
+
+            // create a class
+            CodeTypeDeclaration classType = new CodeTypeDeclaration("Calculator");
+            classType.Attributes = MemberAttributes.Public;
+            codeNamespace.Types.Add(classType);
+
+            // create a method
+            CodeMemberMethod method = new CodeMemberMethod();
+            method.Name = "Calc";
+            method.Attributes = MemberAttributes.Public;
+            method.ReturnType = new CodeTypeReference(typeof(double));
+            classType.Members.Add(method);
+
+            // add the return statement with the calculation
+            CodeMethodReturnStatement returnStatement = new CodeMethodReturnStatement(
+                new CodeSnippetExpression(formula));
+            method.Statements.Add(returnStatement);
+
+            // add assemblies for linking
+            String[] assemblyNames = {
+                typeof(System._AppDomain).Assembly.Location,
+                typeof(System.CodeDom.Compiler.GeneratedCodeAttribute).Assembly.Location,
+            };
+
+            // compile in memory
+            CodeDomProvider provider = CodeDomProvider.CreateProvider("CS");
+            CompilerParameters parameters = new CompilerParameters(assemblyNames);
+            parameters.GenerateExecutable = false;
+            parameters.GenerateInMemory = true;
+            parameters.TreatWarningsAsErrors = false;
+
+            // check for errors
+            CompilerResults compilerResults = provider.CompileAssemblyFromDom(parameters, compileUnit);
+            StringBuilder errors = new StringBuilder();
+            string errorText = String.Empty;
+            foreach (CompilerError compilerError in compilerResults.Errors)
+                errorText += compilerError.ToString() + "\n";
+
+            if (errors.Length == 0)
+            {
+                Type type = compilerResults.CompiledAssembly.GetType("MyCalculator.Calculator");
+                object objInstance = Activator.CreateInstance(type);
+                object result = type.GetMethod("Calc").Invoke(objInstance, new object[] { });
+                return (double)result;
+            }
+            else
+                throw new Exception(errorText);
         }
         private void number_click(object sender, EventArgs e)
         {
@@ -64,15 +123,23 @@ namespace Calculator
                     operation = b.Text;
                     if (b.Text == "x^y")
                     {
-                        result = Double.Parse(txt_display.Text);
+                        
                         txt_showops.Text = txt_display.Text + " ^ "; 
+                        txt_display.Text = "";
+                        enter_operation = false;
+                        enter_value = true;
+                    }
+                    else if(b.Text == "Mod")
+                    {
+                        
+                        txt_showops.Text = txt_display.Text + " % ";
                         txt_display.Text = "";
                         enter_operation = false;
                         enter_value = true;
                     }
                     else
                     {
-                        result = Double.Parse(txt_display.Text);
+                       
                         txt_showops.Text = txt_display.Text + " " + b.Text + " ";
                         txt_display.Text = "";
                         enter_operation = false;
@@ -87,59 +154,50 @@ namespace Calculator
                     if (!enter_value)
                     {
 
-
+                        Button b = (Button)sender;
+                        operation = b.Text;
                         if (operation == "+")
                         {
 
-                            result = result + Double.Parse(txt_display.Text);
-                            Button b = (Button)sender;
-                            operation = b.Text;
+                           
+                           
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
-
-
                             txt_display.Text = "";
 
                         }
                         else if (operation == "-")
                         {
-                            result = result - Double.Parse(txt_display.Text);
-                            Button b = (Button)sender;
-                            operation = b.Text;
+                           
+                          
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             txt_display.Text = "";
 
                         }
                         else if (operation == "*")
                         {
-                            result = result * Double.Parse(txt_display.Text);
-                            Button b = (Button)sender;
-                            operation = b.Text;
+                          
+                          
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             txt_display.Text = "";
 
                         }
                         else if (operation == "/")
                         {
-                            result = result / Double.Parse(txt_display.Text);
-                            Button b = (Button)sender;
-                            operation = b.Text;
+                      
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
                             txt_display.Text = "";
                         }
                         else if (operation == "Mod")
                         {
-                            result = result % Double.Parse(txt_display.Text);
-                            Button b = (Button)sender;
-                            operation = b.Text;
-                            txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
+                            
+                        
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + " " + "%" + " ";
                             txt_display.Text = "";
                         }
                         else if (operation == "x^y")
                         {
-                            result = Math.Pow(result, Double.Parse(txt_display.Text));
-                            Button b = (Button)sender;
-                            operation = b.Text;
-                            txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
+                        
+                            txt_showops.Text = txt_showops.Text + txt_display.Text + " " + "^" + " ";
                             txt_display.Text = "";
                         }
                         enter_value = true;
@@ -174,67 +232,68 @@ namespace Calculator
                 {
                     if (operation == "+")
                     {
-                        result = result + Double.Parse(txt_display.Text);
+
+                        result = Calculate(txt_showops.Text + txt_display.Text);
                         txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString(); ;
 
 
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
                         enter_operation = true;
-                        enter_value = false;
+                        enter_value = true;
                     }
                     else if (operation == "-")
                     {
-                        result = result - Double.Parse(txt_display.Text);
+                        result = Calculate(txt_showops.Text + txt_display.Text);
                         txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString(); ;
 
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
                         enter_operation = true;
-                        enter_value = false;
+                        enter_value = true;
 
                     }
                     else if (operation == "*")
                     {
-                        result = result * Double.Parse(txt_display.Text);
+                        result = Calculate(txt_showops.Text + txt_display.Text);
                         txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
-                        enter_value = false;
+                        enter_value = true;
                         enter_operation = true;
 
                     }
                     else if (operation == "/")
                     {
-                        result = result / Double.Parse(txt_display.Text);
+                        result = Calculate(txt_showops.Text + txt_display.Text);
                         txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
                         enter_operation = true;
-                        enter_value = false;
+                        enter_value = true;
                     }
                     else if (operation == "Mod")
                     {
-                        result = result % Double.Parse(txt_display.Text);
+                        result = Calculate(txt_showops.Text + txt_display.Text);
                         txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
                         enter_operation = true;
-                        enter_value = false;
+                        enter_value = true;
                     }
                     else if (operation == "x^y")
                     {
-                        result = Math.Pow(result, Double.Parse(txt_display.Text));
+                        result = Calculate(txt_showops.Text + txt_display.Text);
 
                         txt_history.Text = txt_showops.Text + txt_display.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
                         enter_operation = true;
-                        enter_value = false;
+                        enter_value = true;
                     }
                     result = new double();
                 }
@@ -316,7 +375,7 @@ namespace Calculator
                     txt_showops.Text = "1/" + txt_display.Text;
                     txt_display.Text = result.ToString();
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                     result = new double();
@@ -330,7 +389,7 @@ namespace Calculator
                     txt_showops.Text = txt_display.Text + "²";
                     txt_display.Text = result.ToString();
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                     result = new double();
@@ -344,7 +403,7 @@ namespace Calculator
                     txt_showops.Text = "✓" + txt_display.Text;
                     txt_display.Text = result.ToString();
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                     result = new double();
@@ -356,7 +415,7 @@ namespace Calculator
                     //txt_showops.Text = "";
                     txt_display.Text = "0";
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 
                     result = new double();
@@ -370,7 +429,7 @@ namespace Calculator
                         result = -Double.Parse(txt_display.Text);
                         txt_display.Text = result.ToString();
                         enter_operation = true;
-                        enter_value = false;
+                     
                     }
 
 
@@ -393,7 +452,7 @@ namespace Calculator
 
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -406,7 +465,7 @@ namespace Calculator
                     txt_history.Text = txt_showops.Text + " = " + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -419,7 +478,7 @@ namespace Calculator
                     txt_history.Text = txt_showops.Text + " = " + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -432,7 +491,7 @@ namespace Calculator
                     txt_history.Text = txt_showops.Text + " = " + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -441,16 +500,25 @@ namespace Calculator
 
                     if (degree)
                     {
-
-                        result = Math.Sin(Math.PI * Double.Parse(txt_display.Text) / 180.0);
-
-
+                        if (int.Parse(txt_display.Text) % 180 != 0)
+                        {
+                            result = Math.Sin(Math.PI * Double.Parse(txt_display.Text) / 180.0);
+                        }
+                        else
+                            result = 0;
                     }
+                    //RAD
                     else
                     {
-
-                        result = Math.Sin(Double.Parse(txt_display.Text));
-
+                        double degrees = Math.Round((180 / Math.PI) * double.Parse(txt_display.Text),0);
+                        
+                        if (degrees % 180 != 0)
+                        {
+                            result = Math.Sin(Math.PI * degrees / 180.0);
+                            //result = Math.PI * result;
+                        }
+                        else
+                            result = 0;
                     }
 
                     txt_showops.Text = "sin( " + txt_display.Text + " )";
@@ -461,7 +529,7 @@ namespace Calculator
                     txt_history.Text = txt_showops.Text + " = " + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -469,17 +537,27 @@ namespace Calculator
                 {
                     if (degree)
                     {
-                        result = Math.Cos(Math.PI * Double.Parse(txt_display.Text) / 180.0);
-
-
-
+                        if (int.Parse(txt_display.Text) % 90 != 0 || int.Parse(txt_display.Text) % 180 == 0)
+                        {
+                            result = Math.Cos(Math.PI * Double.Parse(txt_display.Text) / 180.0);
+                        }
+                        else
+                            result = 0;
                     }
+                    //RAD
                     else
                     {
+                        double degrees = Math.Round((180 / Math.PI) * double.Parse(txt_display.Text), 0);
 
-                        result = Math.Cos(Double.Parse(txt_display.Text));
-
+                        if (degrees % 90 != 0 && degrees % 180 == 0)
+                        {
+                            result = Math.Cos(Math.PI * degrees / 180.0);
+                            //result = Math.PI * result;
+                        }
+                        else
+                            result = 0;
                     }
+
 
 
                     txt_showops.Text = "cos( " + txt_display.Text + " )";
@@ -489,7 +567,7 @@ namespace Calculator
                     txt_history.Text = txt_showops.Text + " = " + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -516,7 +594,7 @@ namespace Calculator
                     txt_history.Text = txt_showops.Text + " = " + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -531,7 +609,7 @@ namespace Calculator
                     txt_history.Text = txt_showops.Text + " = " + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -546,7 +624,7 @@ namespace Calculator
                     txt_history.Text = txt_showops.Text + " = " + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -561,7 +639,7 @@ namespace Calculator
                     txt_history.Text = txt_showops.Text + " = " + txt_display.Text + "\n" + txt_history.Text.ToString();
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }

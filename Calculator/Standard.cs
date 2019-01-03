@@ -40,7 +40,7 @@ namespace Calculator
             }
             else if(b.Text != ".")
             {
-                if (txt_display.Text != "∞" && txt_display.Text != "NaN" && txt_display.Text != "")
+                if (txt_display.Text != "∞" && txt_display.Text != "NaN")
                 {
                     txt_display.Text = txt_display.Text + b.Text;
 
@@ -56,7 +56,7 @@ namespace Calculator
 
         private void operation_click(object sender, EventArgs e)
         {
-            if (txt_display.Text != "∞" && txt_display.Text != "NaN" && txt_display.Text != "")
+            if (txt_display.Text != "NaN" && txt_display.Text != "" && txt_display.Text != "∞")
             {
 
                 if (enter_operation)
@@ -82,8 +82,6 @@ namespace Calculator
                             Button b = (Button)sender;
                             operation = b.Text;
                             txt_showops.Text = txt_showops.Text + txt_display.Text + " " + b.Text + " ";
-
-
                             txt_display.Text = "";
 
                         }
@@ -152,7 +150,7 @@ namespace Calculator
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
                         enter_operation = true;
-                        enter_value = false;
+                        enter_value = true;
 
 
 
@@ -165,7 +163,7 @@ namespace Calculator
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
                         enter_operation = true;
-                        enter_value = false;
+                        enter_value = true;
 
 
                     }
@@ -176,7 +174,7 @@ namespace Calculator
 
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
-                        enter_value = false;
+                        enter_value = true;
                         enter_operation = true;
 
 
@@ -189,7 +187,7 @@ namespace Calculator
                         txt_showops.Text = "";
                         txt_display.Text = result.ToString();
                         enter_operation = true;
-                        enter_value = false;
+                        enter_value = true;
                     }
                     result = new double();
 
@@ -257,7 +255,7 @@ namespace Calculator
 
 
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
 
                 }
@@ -269,7 +267,7 @@ namespace Calculator
                     txt_showops.Text = txt_display.Text + "²";
                     txt_display.Text = result.ToString();
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
                     result = new double();
 
@@ -283,7 +281,7 @@ namespace Calculator
                     txt_showops.Text = "✓ " + txt_display.Text;
                     txt_display.Text = result.ToString();
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
                     result = new double();
                     result = new double();
@@ -296,7 +294,7 @@ namespace Calculator
                     //txt_showops.Text = "";
                     txt_display.Text = "0";
                     enter_operation = true;
-                    enter_value = false;
+                    enter_value = true;
                     result = new double();
                     txt_history.Text = txt_showops.Text + " = " + result.ToString() + "\n" + txt_history.Text.ToString();
 

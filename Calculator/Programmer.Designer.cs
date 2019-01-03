@@ -142,6 +142,7 @@
             // 
             this.txt_display.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txt_display.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_display.Enabled = false;
             this.txt_display.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_display.Location = new System.Drawing.Point(19, 43);
             this.txt_display.Multiline = true;
