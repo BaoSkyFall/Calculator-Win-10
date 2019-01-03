@@ -149,7 +149,67 @@ namespace Calculator
                 treeView1.Visible = false;
 
             }
-           
+            else if (e.Node.Name == "node_area")
+            {
+                this.BackColor = SystemColors.ActiveBorder;
+                btn_menu.BackColor = SystemColors.ActiveBorder;
+                lbl_title.Text = "Area";
+
+                history1.Visible = false;
+
+                area1.Visible = true;
+                area1.BringToFront();
+                treeView1.Visible = false;
+
+                treeView1.Visible = false;
+
+            }
+            else if (e.Node.Name == "node_angle")
+            {
+                this.BackColor = SystemColors.ActiveBorder;
+                btn_menu.BackColor = SystemColors.ActiveBorder;
+                lbl_title.Text = "Angle";
+
+                history1.Visible = false;
+
+                angle1.Visible = true;
+                angle1.BringToFront();
+                treeView1.Visible = false;
+
+                treeView1.Visible = false;
+
+            }
+            else if (e.Node.Name == "node_temperature")
+            {
+                this.BackColor = SystemColors.ActiveBorder;
+                btn_menu.BackColor = SystemColors.ActiveBorder;
+                lbl_title.Text = "Temperature";
+
+                history1.Visible = false;
+
+                temperature1.Visible = true;
+                temperature1.BringToFront();
+                treeView1.Visible = false;
+
+                treeView1.Visible = false;
+
+            }
+            else if (e.Node.Name == "node_speed")
+            {
+                this.BackColor = SystemColors.ActiveBorder;
+                btn_menu.BackColor = SystemColors.ActiveBorder;
+                lbl_title.Text = "Speed";
+
+                history1.Visible = false;
+
+                speed1.Visible = true;
+                speed1.BringToFront();
+                treeView1.Visible = false;
+
+                treeView1.Visible = false;
+
+            }
+
         }
     }
 }

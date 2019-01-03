@@ -47,6 +47,14 @@
             System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("    Length");
             System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("");
             System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("    Weight and Mass");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("    Area");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("    Angle");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("    Temperature");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode(" ");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("   Speed");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.currency1 = new Calculator.Currency();
             this.dateCalculation1 = new Calculator.DateCalculation();
@@ -60,6 +68,10 @@
             this.length1 = new Calculator.Length();
             this.weightAndMass1 = new Calculator.WeightAndMass();
             this.programmer1 = new Calculator.Programmer();
+            this.area1 = new Calculator.Area();
+            this.angle1 = new Calculator.Angle();
+            this.temperature1 = new Calculator.Temperature();
+            this.speed1 = new Calculator.Speed();
             this.SuspendLayout();
             // 
             // currency1
@@ -169,6 +181,22 @@
             treeNode18.Text = "";
             treeNode19.Name = "node_weightandmass";
             treeNode19.Text = "    Weight and Mass";
+            treeNode20.Name = "Node0";
+            treeNode20.Text = "";
+            treeNode21.Name = "node_area";
+            treeNode21.Text = "    Area";
+            treeNode22.Name = "Node2";
+            treeNode22.Text = "";
+            treeNode23.Name = "node_angle";
+            treeNode23.Text = "    Angle";
+            treeNode24.Name = "Node4";
+            treeNode24.Text = "";
+            treeNode25.Name = "node_temperature";
+            treeNode25.Text = "    Temperature";
+            treeNode26.Name = "Node6";
+            treeNode26.Text = " ";
+            treeNode27.Name = "node_speed";
+            treeNode27.Text = "   Speed";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
@@ -188,7 +216,15 @@
             treeNode16,
             treeNode17,
             treeNode18,
-            treeNode19});
+            treeNode19,
+            treeNode20,
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25,
+            treeNode26,
+            treeNode27});
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
             this.treeView1.Size = new System.Drawing.Size(327, 592);
@@ -226,11 +262,47 @@
             this.programmer1.Size = new System.Drawing.Size(781, 577);
             this.programmer1.TabIndex = 53;
             // 
+            // area1
+            // 
+            this.area1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.area1.Location = new System.Drawing.Point(0, 74);
+            this.area1.Name = "area1";
+            this.area1.Size = new System.Drawing.Size(781, 577);
+            this.area1.TabIndex = 54;
+            // 
+            // angle1
+            // 
+            this.angle1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.angle1.Location = new System.Drawing.Point(-3, 74);
+            this.angle1.Name = "angle1";
+            this.angle1.Size = new System.Drawing.Size(781, 577);
+            this.angle1.TabIndex = 55;
+            // 
+            // temperature1
+            // 
+            this.temperature1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.temperature1.Location = new System.Drawing.Point(-3, 74);
+            this.temperature1.Name = "temperature1";
+            this.temperature1.Size = new System.Drawing.Size(781, 577);
+            this.temperature1.TabIndex = 56;
+            // 
+            // speed1
+            // 
+            this.speed1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.speed1.Location = new System.Drawing.Point(-3, 74);
+            this.speed1.Name = "speed1";
+            this.speed1.Size = new System.Drawing.Size(781, 577);
+            this.speed1.TabIndex = 57;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 651);
+            this.Controls.Add(this.speed1);
+            this.Controls.Add(this.temperature1);
+            this.Controls.Add(this.angle1);
+            this.Controls.Add(this.area1);
             this.Controls.Add(this.programmer1);
             this.Controls.Add(this.weightAndMass1);
             this.Controls.Add(this.length1);
@@ -268,5 +340,9 @@
         private Length length1;
         private WeightAndMass weightAndMass1;
         private Programmer programmer1;
+        private Area area1;
+        private Angle angle1;
+        private Temperature temperature1;
+        private Speed speed1;
     }
 }

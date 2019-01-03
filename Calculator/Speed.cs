@@ -10,14 +10,11 @@ using System.Windows.Forms;
 
 namespace Calculator
 {
-    public partial class Volume : UserControl
+    public partial class Speed : UserControl
     {
-        public Volume()
+        public Speed()
         {
             InitializeComponent();
-            comboBox1.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 1;
-
         }
         public bool combochange = true;
         public bool text1 = true;
@@ -26,16 +23,16 @@ namespace Calculator
         public decimal exchange;
         // Mảng 2 chiều giá trị exchange của đại lượng Volume
         public decimal[,] exchange_array = new decimal[,]
-        {
-            {1,0.001m,0.000001m,0.000035m,0.000001m},
-            {1000m,1m,0.001m,0.035315m,0.001308m},
-            {1000000m,1000,1m,35.31467m,1.307951m},
-            {28316.85m,28.31685m,0.028317m,1,0.037037m},
-            {764554.9m,764.5549m,0.764555m,27m,1m}
-
-        };
-        // Xu ly cho phep nhap so
-        private void textbox_keypress(object sender, KeyPressEventArgs e)
+          {
+{1m, 0.01m, 0.036m, 0.032808m, 0.022371m, 0.01944m, 0.000029m},
+{100m, 1m, 3.6m, 3.28084m, 2.237136m, 1.944012m, 0.002939m},
+{27.77778m, 0.277778m, 1m, 0.911344m, 0.621427m, 0.540003m, 0.000816m},
+{30.48m, 0.03048m, 1.09728m, 1m, 0.681876m, 0.592532m, 0.000896m},
+{44.7m, 0.447m, 1.6092m, 1.466535m, 1m, 0.868974m, 0.001314m},
+{51.44m, 0.5144m, 1.85184m, 1.687664m, 1.150783m, 1m, 0.001512m},
+{34030m, 340.3m, 1225.08m, 1116.47m, 761.2975m, 661.5474m, 1m}
+          };
+        private void keypres_txt(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
@@ -63,6 +60,7 @@ namespace Calculator
             }
         }
         // Button số được click
+
         private void number_click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
@@ -113,7 +111,9 @@ namespace Calculator
             }
 
         }
+
         // Xử lý khi textbox1 được click làm giá trị chính cần convert
+
 
         private void txt_text1_Click(object sender, EventArgs e)
         {
@@ -124,30 +124,27 @@ namespace Calculator
 
         }
         // Xử lý khi textbox2 được click làm giá trị chính cần convert
+
         private void txt_text2_Click(object sender, EventArgs e)
         {
             text1 = false;
             combochange = true;
             txt_text1.ForeColor = SystemColors.GrayText;
             txt_text2.ForeColor = SystemColors.WindowText;
-
         }
         // Xử lý khi textbox1 thay đổi text
+
         private void txt_text1_TextChanged(object sender, EventArgs e)
         {
-            // Nếu textbox chính là text1
             if (text1)
             {
                 // Nếu combobox đã được thay đổi giá trị index
                 if (combochange)
                 {
-
-                  
-         
                     // Khóa combobox
                     combochange = false;
                     //Xử lý 2 giá trị combobox lấy exchange
-                    exchange = (exchange_array[comboBox1.SelectedIndex, comboBox2.SelectedIndex]);  
+                    exchange = (exchange_array[comboBox1.SelectedIndex, comboBox2.SelectedIndex]);
                 }
                 // Xử lý giá trị chuyển đổi
 
@@ -167,7 +164,7 @@ namespace Calculator
                 }
                 else if (txt_text1.Text == "0")
                 {
-                    button1_Click(sender, e);
+                    clearall_click(sender, e);
                 }
                 else
                 {
@@ -177,27 +174,24 @@ namespace Calculator
                 }
 
             }
-
         }
         // Xử lý khi textbox2 thay đổi text
 
         private void txt_text2_TextChanged(object sender, EventArgs e)
         {
-            // Nếu text2 là text box chính cần đổi
             if (!text1)
             {
                 // Nếu combobox đã được thay đổi giá trị index
-                if (combochange) 
+                if (combochange)
                 {
 
-                   
-                  
+
                     //Khóa combobox
                     combochange = false;
                     //Xử lý 2 giá trị combobox lấy exchange
                     exchange = exchange_array[comboBox2.SelectedIndex, comboBox1.SelectedIndex];
                 }
-              // Xử lý giá trị chuyển đổi
+                // Xử lý giá trị chuyển đổi
                 if (txt_text2.Text != "")
                 {
                     decimal d = Decimal.Parse(txt_text2.Text);
@@ -214,7 +208,7 @@ namespace Calculator
                 }
                 else if (txt_text2.Text == "0")
                 {
-                    button1_Click(sender, e);
+                    clearall_click(sender, e);
                 }
                 else
                 {
@@ -223,11 +217,48 @@ namespace Calculator
 
                 }
             }
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
+            {
+                combochange = true;
+                if (text1)
+                {
+                    txt_text1_TextChanged(sender, e);
+                }
+                else
+                {
+                    txt_text2_TextChanged(sender, e);
+                }
+
+
+            }
+
 
         }
-       
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
+            {
+                combochange = true;
+
+                if (text1)
+                {
+                    txt_text1_TextChanged(sender, e);
+                }
+                else
+                {
+                    txt_text2_TextChanged(sender, e);
+                }
+
+
+            }
+
+        }
         // Lệnh xóa button 1 ky1 tu75
-        private void button17_Click(object sender, EventArgs e)
+        private void delete_click(object sender, EventArgs e)
         {
             if (text1)
             {
@@ -245,62 +276,11 @@ namespace Calculator
                 }
             }
         }
-        // Lệnh xóa button CE
-        private void button1_Click(object sender, EventArgs e)
+
+        private void clearall_click(object sender, EventArgs e)
         {
             txt_text1.Text = "0";
             txt_text2.Text = "0";
-        }
-
-        // Xử lý chỉ cho nhập số
-       
-        // Khi combobox 1 thay đổi giá trị chuyển đổi
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
-            {
-                combochange = true;
-                if (text1)
-                {
-                    txt_text1_TextChanged(sender, e);
-                }
-                else
-                {
-                    txt_text2_TextChanged(sender, e);
-                }
-
-
-            }
-
-
-
-
-
-        }
-        // Khi combobox 2 thay đổi giá trị chuyển đổi
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
-            {
-                combochange = true;
-
-                if (text1)
-                {
-               
-                    txt_text1_TextChanged(sender, e);
-                }
-                else
-                {
-                    txt_text2_TextChanged(sender, e);
-                }
-
-
-            }
-
-
-
         }
     }
 }

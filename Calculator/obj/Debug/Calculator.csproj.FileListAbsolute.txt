@@ -124,3 +124,7 @@ C:\Users\baoit\Desktop\Calculator-Win-10\Calculator\obj\Debug\Calculator.csproj.
 C:\Users\baoit\Desktop\Calculator-Win-10\Calculator\obj\Debug\Calculator.csproj.CopyComplete
 C:\Users\baoit\Desktop\Calculator-Win-10\Calculator\obj\Debug\Calculator.exe
 C:\Users\baoit\Desktop\Calculator-Win-10\Calculator\obj\Debug\Calculator.pdb
+C:\Users\Admin\Desktop\test\Calculator-Win-10-master\Calculator\obj\Debug\Calculator.Area.resources
+C:\Users\Admin\Desktop\test\Calculator-Win-10-master\Calculator\obj\Debug\Calculator.Angle.resources
+C:\Users\Admin\Desktop\test\Calculator-Win-10-master\Calculator\obj\Debug\Calculator.Temperature.resources
+C:\Users\Admin\Desktop\test\Calculator-Win-10-master\Calculator\obj\Debug\Calculator.Speed.resources

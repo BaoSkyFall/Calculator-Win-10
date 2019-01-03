@@ -48,6 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Angle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Angle.Designer.cs">
+      <DependentUpon>Angle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Area.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Area.Designer.cs">
+      <DependentUpon>Area.cs</DependentUpon>
+    </Compile>
     <Compile Include="Currency.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,11 +116,23 @@
     <Compile Include="Scientific.Designer.cs">
       <DependentUpon>Scientific.cs</DependentUpon>
     </Compile>
+    <Compile Include="Speed.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Speed.Designer.cs">
+      <DependentUpon>Speed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Standard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Standard.Designer.cs">
       <DependentUpon>Standard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Temperature.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Temperature.Designer.cs">
+      <DependentUpon>Temperature.cs</DependentUpon>
     </Compile>
     <Compile Include="Volume.cs">
       <SubType>UserControl</SubType>
@@ -122,6 +146,12 @@
     <Compile Include="WeightAndMass.Designer.cs">
       <DependentUpon>WeightAndMass.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Angle.resx">
+      <DependentUpon>Angle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Area.resx">
+      <DependentUpon>Area.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Currency.resx">
       <DependentUpon>Currency.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,8 +188,14 @@
     <EmbeddedResource Include="Scientific.resx">
       <DependentUpon>Scientific.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Speed.resx">
+      <DependentUpon>Speed.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Standard.resx">
       <DependentUpon>Standard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Temperature.resx">
+      <DependentUpon>Temperature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Volume.resx">
       <DependentUpon>Volume.cs</DependentUpon>
